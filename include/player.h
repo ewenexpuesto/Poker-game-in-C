@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "player.h"
+#include "card.h"
 
 #ifndef _PLAYER_
 #define _PLAYER_
