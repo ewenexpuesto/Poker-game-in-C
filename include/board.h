@@ -1,5 +1,5 @@
-#include <card.h>
-#include <player.h>
+#include "card.h"
+#include "player.h"
 
 /**
  * \brief Une variable de type board permettra d'accéder à toutes les informations relatives au plateau de jeu
