@@ -119,6 +119,15 @@ typedef void* player;
 
 
 /**
+ * \brief Renvoie le pari de la joueuse écrit sur son ardoise, codé avec un entier
+ * \param p player
+ * \return un entier
+ */
+
+ int get_slate(player p);
+
+ 
+/**
  * \brief Remplace le pari de la joueuse par le pari codé avec l'entier donné en entrée
  * \param p player, n entier
  * \return La fonction ne renvoie rien
