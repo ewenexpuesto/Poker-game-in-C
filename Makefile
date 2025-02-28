@@ -1,4 +1,4 @@
-# Compiler : gcc ou clang
+#Compiler : gcc ou clang
 CC = gcc
 
 #Options
