@@ -5,4 +5,5 @@
 
 player p1 = create_player();
 player p2 = create_player();
-player p3 = 
+player p3 = create_player();
+player p4 = create_player();

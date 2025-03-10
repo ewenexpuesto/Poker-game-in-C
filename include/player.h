@@ -8,7 +8,7 @@
 /** 
  * \brief Créer un type abstrait player
  */
-typedef void* player;
+typedef void *player;
 
 /**
  *  \brief Renvoie un player sans carte en main initialement sans carte en main, sans carte posée sur la table et avec une ardoise vide 
@@ -17,7 +17,7 @@ typedef void* player;
  *  \return un player
  */
 
- player create_player();
+player create_player();
 
 
 /** 
@@ -25,7 +25,7 @@ typedef void* player;
  * \param p player
  */
 
- void free_player(player p);
+void free_player(player p);
 
 
 /**
@@ -34,7 +34,7 @@ typedef void* player;
  * \return un entier
  */
  
- int get_player_id (player p);
+int get_player_id (player p);
  
 
 /**
