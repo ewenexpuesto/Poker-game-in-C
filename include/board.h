@@ -28,7 +28,7 @@ void free_board(board b);
 void add_team(board b);
 
 /**
- * \brief Cette fonction devra renvoyer le nombre d'équipes présentes dans sur le plateau
+ * \brief Cette fonction devra renvoyer le nombre d'équipes présentes sur le plateau
  * \param b de type board
  * \return un entier, le nombre de joueurs sur le plateau
  */
