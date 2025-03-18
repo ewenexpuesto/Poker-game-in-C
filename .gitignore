@@ -1,3 +1,11 @@
+# Latex compilation files
+*.aux
+*.fls
+*.log
+*.fdb_latexmk
+*.synctex.gz
+*.tex
+
 # Project html
 *.html
 
