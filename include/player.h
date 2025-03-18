@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "card.h"
 
 #ifndef _PLAYER_
 #define _PLAYER_
@@ -79,7 +78,7 @@ int get_player_id (player p);
  * \return La fonction ne renvoie rien
  */
 
- void remove_card_from_hand(player p, c card);
+ void remove_card_from_hand(player p, card c);
 
 
 /**
@@ -88,7 +87,7 @@ int get_player_id (player p);
  * \return La fonction ne renvoie rien
  */
 
- void play_card(player p, c card);
+ void play_card(player p, card c);
 
 
 /**
