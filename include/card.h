@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "board.h"
-#include "player.h"
 
 #ifndef _CARD_
 #define _CARD_

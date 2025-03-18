@@ -50,6 +50,6 @@ void display_end_game(board b);
 \param c : char* c message à renvoyer
 \return : rien
 */
-void display_message(char* c)
+void display_message(char* c);
 
 #endif
