@@ -59,6 +59,11 @@ double P(tirage t) {
     }
 }
 
+/**
+ * \brief Crée une pioche de cartes
+ * \param
+ * \return une pioche de cartes
+ */
 int * def_pioche(){
     int * pioche = (int *) malloc(6 * sizeof(int));
     pioche[0] = 1;
@@ -70,30 +75,48 @@ int * def_pioche(){
     return pioche;
 }
 
+/**
+ * \brief Tire deux cartes de la pioche du jeu
+ * \param
+ * \return un tirage
+ */
 tirage mainJ1 () {
     int * pioche = def_pioche();
     tirage t = distrib(pioche);
     return t;
 }
 
+/**
+ * \brief Calcule la probabilité d'obtenir un couple de cartes donné
+ * \param i la première carte
+ * \param j la seconde carte qui est supérieure à la première
+ * \param n le nombre de tirages
+ * \return la probabilité d'obtenir ce couple de cartes
+ */
 double P_approx_1(int i,int j, int n) {
     int * pioche = def_pioche();
-    int * proportion_i_j = (int *) calloc(1 * sizeof(tirage));
+    int proportion_i_j;
     for (int k = 0 ; k < n ; k++) {
         tirage t = distrib(pioche);
         if (t.first == i && t.second == j) {
-            proportion_i_j[0]++;
+            proportion_i_j++;
         }
     }
-    return proportion_i_j[0] / n;
+    return proportion_i_j / n;
 }
 
+/**
+ * \brief Calcule la probabilité d'obtenir tous les couples de cartes
+ * \param n le nombre de tirages
+ * \return une liste, qui est la probabilité d'obtenir tous les couples de cartes
+ */
 double * P_approx_1(int n) {
     int * proportion = (int *) calloc(6 * sizeof(tirage));
-    for (int i = 1 ; i < 4 ; i++) { // vérifier cette boucle
-        for (int j = i ; j < 4 ; j++) {
-            proportion[(i-1)*3+j-1] = P_approx_1(i,j,n);
-        }
-    }
+    proportion[0] = P_approx_1(1,1,n);
+    proportion[1] = P_approx_1(1,2,n);
+    proportion[2] = P_approx_1(1,3,n);
+    proportion[3] = P_approx_1(2,2,n);
+    proportion[4] = P_approx_1(2,3,n);
+    proportion[5] = P_approx_1(3,3,n);
     return proportion;
 }
