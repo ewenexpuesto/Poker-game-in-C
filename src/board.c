@@ -29,11 +29,11 @@ void free_board(board b) {
 void add_team(board b) {
     if (b->team1 == NULL) {
         b->team1 = malloc(sizeof(team));
-        b->team1.team_id = 1;
+        b->team1.team_id = 0;
     }
     else if (b->team2 == NULL) {
         b->team2 = malloc(sizeof(team));
-        b->team2.team_id = 2;
+        b->team2.team_id = 1;
     }
     else {
         printf("Error: too many teams\n");
@@ -81,7 +81,7 @@ void add_player_to_team(board b, int team_id, player player) {
     printf("Unknown error\n");
 }
 
-int get_number_players_in_team(board b, int team_id) {
+int get_number_of_players_in_team(board b, int team_id) {
     int count = 0;
     if (b->team1.teamid == team_id) {
         if (b->team1.player1 != NULL) {
@@ -104,10 +104,10 @@ int get_number_players_in_team(board b, int team_id) {
 
 player get_player(board b, int team_id, int player_index) {
     if (b->team1.teamid == team_id) {
-        if (player_index == 1) {
+        if (player_index == 0) {
             return b->team1.player1;
         }
-        else if (player_index == 2) {
+        else if (player_index == 1) {
             return b->team1.player2;
         }
         else {
@@ -115,10 +115,10 @@ player get_player(board b, int team_id, int player_index) {
         }
     }
     else if (b->team2.teamid == team_id) {
-        if (player_index == 1) {
+        if (player_index == 0) {
             return b->team2.player1;
         }
-        else if (player_index == 2) {
+        else if (player_index == 1) {
             return b->team2.player2;
         }
         else {
