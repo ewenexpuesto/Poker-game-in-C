@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "card.h"
+#include "../include/card.h"
+
 struct card_s
 {
     int id_card;

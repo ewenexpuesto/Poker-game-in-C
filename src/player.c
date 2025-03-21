@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "player.h"
-#include "card.h"
+#include "../include/player.h"
+#include "../include/card.h"
 
 struct player_s
 {
