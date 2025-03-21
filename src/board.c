@@ -81,7 +81,7 @@ void add_player_to_team(board b, int team_id, player player) {
     printf("Unknown error\n");
 }
 
-int get_number_players_in_team(board b, int team_id) {
+int get_number_of_players_in_team(board b, int team_id) {
     int count = 0;
     if (b->team1.teamid == team_id) {
         if (b->team1.player1 != NULL) {
