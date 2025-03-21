@@ -11,9 +11,9 @@ struct player_s{
     int table;
     int ardoise;            /*1 =la joueuse a parié défaite et 0=la joueuse a parié défaite */
     int id;
-};
-
-typedef struct player_s player; 
+  };
+  
+typedef struct player_s* player;
 
 int creation_id(){
     static int id=1;
@@ -21,13 +21,13 @@ int creation_id(){
     id++;
 }
 
-player* create_player (){
-    player *p= (player*)malloc(sizeof(player));
+player create_player (){
+    player p= malloc(sizeof(player));
     if (p == NULL){
         perror("Erreur durant l'allocation");
         exit(1);
     }
-    p->cards_in_hand = NULL;
+    p->cards_in_hand = malloc(20*sizeof(card));
     p->hand=0;
     p->cards_on_table = NULL;
     p->table=0;
@@ -37,7 +37,7 @@ player* create_player (){
     return p;
 };
 
-void free_player(player* p){
+void free_player(player p){
     free(p->cards_in_hand);
     free(p->cards_on_table);
     free(p->ardoise);
@@ -45,36 +45,35 @@ void free_player(player* p){
 }
 
 int get_player_id(player p){
-    return p.id;
+    return p->id;
 }
 
-player get_player_by_id(int n){
+/*player get_player_by_id(int n){
     if (player.id ==n){
         return player;
     }
-}
+}*/
 
-void add_card_to_hand(player *p, card c){
-    p->cards_in_hand = (card*)malloc(p.cards_in_hand +1)*sizeof(card);
-    p->cards_in_hand[player->hand]=c;
+void add_card_to_hand(player p, card c){
+    p->cards_in_hand[p->hand]=c;
     p->hand++;
-    c.index=p->hand;
+
 }
 
 int get_size_of_hand(player p){
-    return p.hand;
+    return p->hand;
 }
 
 card get_card_in_hand(player p, int card_index){
     return p->cards_in_hand[card_index];
 }
 
-void remove_card_from_hand(player *p, card c){
-    int index = c.index;
+/*void remove_card_from_hand(player p, card c){
+    //int index = c.index;
     free(p->cards_in_hand[c.index]);
     if (c.index >0){
         for (int i=c.index; i<p->hand+1; i++){
-            cards_in_hand[i]=cards_in_hand[i-1];      
+            p->cards_in_hand[i]=p->cards_in_hand[i-1];      
         }
     }
-}
+}*/
