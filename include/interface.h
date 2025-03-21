@@ -19,6 +19,7 @@
 \param p : player p défini dans player.h et player.c
 \return : entier i encodant le pari
 */
+
 int ask_gamble(player p);
 
 
