@@ -12,24 +12,32 @@ EXEC=exec clean
 
 all: $(EXEC)
 
+#Répertoires
+
+OBJDIR = obj
+SRCDIR = src
+INCDIR = include
+
 #Règles implicites (ajoutées par défaut)
 .SUFFIXES: .c .o
-.c .o : # <==> %.o: %.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c # <==> %.o: %.c
 	$(CC) $(CFLAGS) -c $<
 
 #Dépendencies 
 
-board.o : board.c
-player.o : player.c
-interface.o : interface.c
-card.o : card.c
-main.o: main.c
+board.o : $(SRCDIR)/board.c 
+player.o : $(SRCDIR)/player.c 
+interface.o : $(SRCDIR)/interface.c
+card.o : $(SRCDIR)/card.c 
+main.o: $(SRCDIR)/main.c 
+
+OBJS = $(OBJDIR)/board.o $(OBJDIR)/player.o $(OBJDIR)/interface.o $(OBJDIR)/card.o $(OBJDIR)/main.o
 
 # Targets 
-exec : main.o board.o player.o interface.o card.o
+exec : $(OBJS)
 	$(CC) -o $@ $^
 
 # Clean
 
 clean :
-	rm -f *.o $@
+	rm -f $(OBJDIR)/*.o 
