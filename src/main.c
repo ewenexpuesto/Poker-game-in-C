@@ -56,7 +56,6 @@ int main() {
         /* Phase de jeu */
 
         int team_scores[NB_TEAMS] = {0, 0};
-        int card_id[NB_PLAYERS_TEAM];
 
         for (int i = 0; i < NB_TEAMS; i++) {
             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
@@ -65,7 +64,7 @@ int main() {
                 for (int k = 0; k < nb_cards; k++) {
                     card c = ask_card(p);
                     play_card(p, c);
-                    card_id[k] = get_card_id(c);
+                    remove_card_from_hand(p,c);
                     team_scores[i] += get_value(c);
                 }
             }
@@ -87,15 +86,6 @@ int main() {
             }
         }
         
-        for (int i = 0; i < NB_TEAMS; i++) {
-            for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
-                player p = get_player(b, i, j);
-                while(card_id != NULL){
-                    card c = get_card_by_id(card_id[j]);
-                    remove_card_from_hand(p,c);
-                }
-            }
-        }
         /* Attribution des points */
 
         for (int i = 0; i < NB_TEAMS; i++) {
@@ -127,7 +117,7 @@ int main() {
         card c = get_card_by_id(all_card_id[i]);
         free_card(c);
     }
-    
+
     free_board(b);
     
     return 0;
