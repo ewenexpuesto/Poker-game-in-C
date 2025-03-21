@@ -1,14 +1,27 @@
-/*#include <stdio.h>
-#include <stdlib.h>*/
+#include <stdio.h>
+#include <stdlib.h>
+#include "../include/player.h"
+#include "../include/card.h"
 
+struct player_s
+{
+    card *cards_in_hand;        /*les cartes en main*/
+    int hand;                   /*le nombre de cartes en main*/
+    card *cards_on_table;       /*les cartes sur la table*/
+    int table;                  /*le nombre de cartes sur la table*/
+    int ardoise; /*1 =la joueuse a parié victoire et 0=la joueuse a parié défaite */
+    int id;                     /*l'identifiant de la joueuse*/
+    int team_id;                /*l'identifiant de son équipe*/
+};
 
-#ifndef _PLAYER_
-#define _PLAYER_
-#include "card.h"
-/** 
- * \brief Créer un type abstrait player
- */
-typedef struct player_s* player;
+int creation_id()       /*creer un identifiant id unique qui commence à 0 pour la première joueuse*/
+{
+    static int id = 0;
+    return id;
+    id++;
+}
+
+player player_tab[4];       /*on créer un tableau de joueuses*/
 
 
 /**
@@ -18,7 +31,23 @@ typedef struct player_s* player;
  *  \return un player
  */
 
- player create_player();
+player create_player()
+{
+    player p = malloc(sizeof(struct player_s));
+    if (p == NULL)
+    {
+        perror("Erreur durant l'allocation");       
+        exit(1);
+    }
+    p->cards_in_hand = malloc(6 * sizeof(card));        
+    p->hand = 0;
+    p->cards_on_table = NULL;
+    p->table = 0;
+    p->ardoise = 0;
+    p->id = creation_id();
+    player_tab[p->id] = p;      /*l'identifiant de la joueuse est sa place dans le tableau des joueuses*/
+    return p;
+};
 
 
 /** 
@@ -26,7 +55,12 @@ typedef struct player_s* player;
  * \param p player
  */
 
- void free_player(player p);
+void free_player(player p)
+{
+    free(p->cards_in_hand);
+    free(p->cards_on_table);
+    free(p);
+}
 
 
 /**
@@ -35,8 +69,11 @@ typedef struct player_s* player;
  * \return un entier
  */
  
- int get_player_id (player p);
- 
+int get_player_id(player p)
+{
+    return p->id;
+}
+
 
 /**
  * \brief Renvoie une joueuse 
@@ -44,7 +81,14 @@ typedef struct player_s* player;
  * \return player
  */
 
- player get_player_by_id(int n);
+player get_player_by_id(int n)
+{
+    if (n >= 0 && n < 4) /*il ny a que 4 joueurs donc les identifiants sont compris entre 0 et 4*/
+    {
+        return player_tab[n];
+    }
+    return NULL;
+}
 
 
 /**
@@ -53,7 +97,11 @@ typedef struct player_s* player;
  * \return La fonction ne renvoie rien
  */
 
- void add_card_to_hand(player p, card c);
+void add_card_to_hand(player p, card c)
+{
+    p->cards_in_hand[p->hand] = c;
+    p->hand++;          /*le nombre de cartes en main augmente de 1*/
+}
 
 
 /**
@@ -62,7 +110,10 @@ typedef struct player_s* player;
  * \return un entier
  */
 
-  int get_size_of_hand(player p);
+int get_size_of_hand(player p)
+{
+    return p->hand;
+}
 
 
 /**
@@ -71,7 +122,11 @@ typedef struct player_s* player;
  * \return une carte 
  */
 
- card get_card_in_hand (player p, int card_index);
+
+card get_card_in_hand(player p, int card_index)
+{
+    return p->cards_in_hand[card_index];
+}
 
 
 /**
@@ -80,7 +135,28 @@ typedef struct player_s* player;
  * \return La fonction ne renvoie rien
  */
 
- void remove_card_from_hand(player p, card c);
+void remove_card_from_hand(player p, card c)
+{
+    int id_card = get_card_id(c);
+    int j = -1;
+    for (int i = 0; i < p->hand; i++)
+    {
+        if (get_card_id(p->cards_in_hand[i]) == id_card)
+        {
+            free(p->cards_in_hand[i]);
+            j = i;          
+            break;
+        }
+    }
+    if (j != -1)            /*si j=-1 alors la carte n'est pas en main*/
+    {
+        for (int i = j; i < p->hand - 1; i++)
+        {
+            p->cards_in_hand[i] = p->cards_in_hand[i + 1];
+        }
+        p->hand--;
+    }
+}
 
 
 /**
@@ -89,7 +165,11 @@ typedef struct player_s* player;
  * \return La fonction ne renvoie rien
  */
 
- void play_card(player p, card c);
+void play_card(player p, card c)
+{
+    p->cards_on_table[p->table] = c;
+    p->table++;
+}
 
 
 /**
@@ -98,7 +178,10 @@ typedef struct player_s* player;
  * \return un entier
  */
 
- int get_number_of_played_cards(player p);
+int get_number_of_played_cards(player p)
+{
+    return p->table;
+}
 
 
 /**
@@ -107,7 +190,10 @@ typedef struct player_s* player;
  * \return une carte
  */
 
- card get_played_card(player p, int card_index);
+card get_played_card(player p, int card_index)
+{
+    return p->cards_on_table[card_index];
+}
 
 
 /**
@@ -116,7 +202,28 @@ typedef struct player_s* player;
  * \return La fonction ne renvoie rien
  */
 
- void remove_played_card(player p, card c);
+void remove_played_card(player p, card c)
+{
+    int id_card = get_card_id(c);
+    int j = -1;
+    for (int i = 0; i < p->table; i++)
+    {
+        if (get_card_id(p->cards_on_table[i]) == id_card)
+        {
+            free(p->cards_on_table[i]);
+            j = i;
+            break;
+        }
+    }
+    if (j != -1)        /*si j=-1 alors la carte n'est pas sur la table*/
+    {
+        for (int i = j; i < p->table - 1; i++)
+        {
+            p->cards_on_table[i] = p->cards_on_table[i + 1];
+        }
+        p->table--;
+    }
+}
 
 
 /**
@@ -125,14 +232,26 @@ typedef struct player_s* player;
  * \return un entier
  */
 
- int get_slate(player p);
+int get_slate(player p)
+{
+    return p->ardoise;
+}
 
- 
+
 /**
  * \brief Remplace le pari de la joueuse par le pari codé avec l'entier donné en entrée
  * \param p player, n entier
  * \return La fonction ne renvoie rien
  */
 
- void set_slate(player p, int n);
-#endif
+void set_slate(player p, int n)
+{
+    if (n == 0 || n == 1)
+    {
+        p->ardoise = n;
+    }
+    else
+    {
+        printf("n doit être entre 0 et 1");
+    }
+}
