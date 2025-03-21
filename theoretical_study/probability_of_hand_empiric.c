@@ -52,7 +52,7 @@ double P(tirage t) {
     else if ((t.first == 1 && t.second == 2) || 
              (t.first == 1 && t.second == 3) || 
              (t.first == 2 && t.second == 3)) {
-        return 2.0 / 15.0;
+        return 4.0 / 15.0;
     } 
     else {
         printf("Erreur : couple de cartes non défini.\n");
