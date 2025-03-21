@@ -1,14 +1,15 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "card.h"
+/*#include <stdio.h>
+#include <stdlib.h>*/
+
 
 #ifndef _PLAYER_
 #define _PLAYER_
-
+#include "card.h"
 /** 
  * \brief Créer un type abstrait player
  */
-typedef void* player;
+typedef struct player_s* player;
+
 
 /**
  *  \brief Renvoie un player sans carte en main initialement sans carte en main, sans carte posée sur la table et avec une ardoise vide 
