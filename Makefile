@@ -21,7 +21,7 @@ INCDIR = include
 #Règles implicites (ajoutées par défaut)
 .SUFFIXES: .c .o
 $(OBJDIR)/%.o: $(SRCDIR)/%.c # <==> %.o: %.c
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
 #Dépendencies 
 
