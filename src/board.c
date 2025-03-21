@@ -2,58 +2,63 @@
 #include "../include/card.h"
 #include "../include/player.h"
 
-typedef struct {
-    team team1;
-    team team2;
-    card * out_of_game_cards;
-} * board;
-
-typedef struct {
+struct team {
     int team_id;
     player player1;
     player player2;
     int score;
-} team;
+};
+
+struct board {
+    team team1;
+    team team2;
+    card * out_of_game_cards;
+};
 
 board create_board() {
-    board b = malloc(sizeof(board));
+    board b = malloc(sizeof(*b));
+    b->team1.team_id = -1;
+    b->team2.team_id = -1;
+    b->team1.score = 0;
+    b->team2.score = 0;
+    b->team1.player1 = NULL;
+    b->team1.player2 = NULL;
+    b->team2.player1 = NULL;
+    b->team2.player2 = NULL;
+    b->out_of_game_cards = NULL; // We make space for it later
     return b;
 }
 
 void free_board(board b) {
-    free(b->team1);
-    free(b->team2);
+    free(b->out_of_game_cards);
     free(b);
 }
 
 void add_team(board b) {
-    if (b->team1 == NULL) {
-        b->team1 = malloc(sizeof(team));
+    if (b->team1.team_id == -1) {
         b->team1.team_id = 0;
     }
-    else if (b->team2 == NULL) {
-        b->team2 = malloc(sizeof(team));
+    else if (b->team2.team_id == -1) {
         b->team2.team_id = 1;
     }
     else {
         printf("Error: too many teams\n");
     }
-    printf("Unknown error\n");
 }
 
 int get_number_of_teams(board b) {
     int count = 0;
-    if (b->team1 != NULL) {
+    if (b->team1.team_id != -1) {
         count++;
     }
-    if (b->team2 != NULL) {
+    if (b->team2.team_id != -1) {
         count++;
     }
     return count;
 }
 
 void add_player_to_team(board b, int team_id, player player) {
-    if (b->team1.teamid == team_id) {
+    if (b->team1.team_id == team_id) {
         if (b->team1.player1 == NULL) {
             b->team1.player1 = player;
         }
@@ -64,7 +69,7 @@ void add_player_to_team(board b, int team_id, player player) {
             printf("Error: too many players\n");
         }
     }
-    else if (b->team2.teamid == team_id) {
+    else if (b->team2.team_id == team_id) {
         if (b->team2.player1 == NULL) {
             b->team2.player1 = player;
         }
@@ -83,7 +88,7 @@ void add_player_to_team(board b, int team_id, player player) {
 
 int get_number_of_players_in_team(board b, int team_id) {
     int count = 0;
-    if (b->team1.teamid == team_id) {
+    if (b->team1.team_id == team_id) {
         if (b->team1.player1 != NULL) {
             count++;
         }
@@ -91,7 +96,7 @@ int get_number_of_players_in_team(board b, int team_id) {
             count++;
         }
     }
-    else if (b->team2.teamid == team_id) {
+    else if (b->team2.team_id == team_id) {
         if (b->team2.player1 != NULL) {
             count++;
         }
@@ -103,7 +108,7 @@ int get_number_of_players_in_team(board b, int team_id) {
 }
 
 player get_player(board b, int team_id, int player_index) {
-    if (b->team1.teamid == team_id) {
+    if (b->team1.team_id == team_id) {
         if (player_index == 0) {
             return b->team1.player1;
         }
@@ -114,7 +119,7 @@ player get_player(board b, int team_id, int player_index) {
             printf("Error: wrong player index\n");
         }
     }
-    else if (b->team2.teamid == team_id) {
+    else if (b->team2.team_id == team_id) {
         if (player_index == 0) {
             return b->team2.player1;
         }
@@ -129,26 +134,28 @@ player get_player(board b, int team_id, int player_index) {
         printf("Error: wrong team id\n");
     }
     printf("Unknown error\n");
+    return NULL;
 }
 
 int get_score_of_team(board b, int team_id) {
-    if (b->team1.teamid == team_id) {
+    if (b->team1.team_id == team_id) {
         return b->team1.score;
     }
-    else if (b->team2.teamid == team_id) {
+    else if (b->team2.team_id == team_id) {
         return b->team2.score;
     }
     else {
         printf("Error: wrong team id\n");
     }
     printf("Unknown error\n");
+    return -1;
 }
 
 void set_score_of_team(board b, int team_id, int score) {
-    if (b->team1.teamid == team_id) {
+    if (b->team1.team_id == team_id) {
         b->team1.score = score;
     }
-    else if (b->team2.teamid == team_id) {
+    else if (b->team2.team_id == team_id) {
         b->team2.score = score;
     }
     else {
@@ -190,6 +197,7 @@ card get_out_of_game_card(board b, int card_index) {
         printf("Error: no out of game cards\n");
     }
     printf("Unknown error\n");
+    return NULL;
 }
 
 void remove_out_of_game_card(board b, card c) {

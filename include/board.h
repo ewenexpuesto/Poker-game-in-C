@@ -4,7 +4,8 @@
 /**
  * \brief Une variable de type board permettra d'accéder à toutes les informations relatives au plateau de jeu
  */
-typedef void * board;
+typedef struct team team;
+typedef struct board * board;
 
 /**
  * \brief Cette fonction devra allouer la mémoire nécessaire pour créer un nouveau plateau
