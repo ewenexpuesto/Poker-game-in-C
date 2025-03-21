@@ -8,6 +8,7 @@
 #define NB_TEAMS 2
 #define NB_PLAYERS_TEAM 2
 #define NB_ROUNDS 3
+#define NB_CARDS 20
 
 int main() {
 
@@ -16,6 +17,8 @@ int main() {
     board b = create_board();
     
     /* Ajout des équipes et des joueuses */
+    int all_card_id[NB_CARDS];
+    int count = 0;
 
     for (int i = 0; i < NB_TEAMS; i++) {
         add_team(b);
@@ -29,6 +32,8 @@ int main() {
                 card c = create_card();
                 set_value(c, (k + 1)); 
                 add_card_to_hand(p, c);
+                all_card_id[count] = get_card_id(c);
+                count++ ;
             }
         }
     }
@@ -51,14 +56,16 @@ int main() {
         /* Phase de jeu */
 
         int team_scores[NB_TEAMS] = {0, 0};
+        int card_id[NB_PLAYERS_TEAM];
+
         for (int i = 0; i < NB_TEAMS; i++) {
             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
                 player p = get_player(b, i, j);
                 int nb_cards = ask_number_of_played_cards(p);
                 for (int k = 0; k < nb_cards; k++) {
                     card c = ask_card(p);
-                    remove_card_from_hand(p,c);
                     play_card(p, c);
+                    card_id[k] = get_card_id(c);
                     team_scores[i] += get_value(c);
                 }
             }
@@ -80,6 +87,15 @@ int main() {
             }
         }
         
+        for (int i = 0; i < NB_TEAMS; i++) {
+            for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+                player p = get_player(b, i, j);
+                while(card_id != NULL){
+                    card c = get_card_by_id(card_id[j]);
+                    remove_card_from_hand(p,c);
+                }
+            }
+        }
         /* Attribution des points */
 
         for (int i = 0; i < NB_TEAMS; i++) {
@@ -107,7 +123,12 @@ int main() {
         }
     }
 
+    for(int i = 0; i < NB_CARDS; i++){
+        card c = get_card_by_id(all_card_id[i]);
+        free_card(c);
+    }
+    
     free_board(b);
-
+    
     return 0;
 }
