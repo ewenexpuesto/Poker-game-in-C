@@ -55,7 +55,7 @@ int get_number_of_players_in_team(board b, int team_id);
  * \brief Cette fonction devra renvoyer la joueuse de l'équipe dont l'id est team_id et dont l'indice dans l'équipe est player_index
  * \param b de type board
  * \param team_id un entier identifiant l'équipe
- * \param player_index un entier représentant l'index de la joueuse dans l'équipe, 1 pour la première et 2 pour la deuxième
+ * \param player_index un entier représentant l'index de la joueuse dans l'équipe, 0 pour la première et 1 pour la deuxième
  * \return une joueuse
  */
 player get_player(board b, int team_id, int player_index);
