@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2025-02-16" view-index="0" gantt-divider-location="570" resource-divider-location="300" version="3.3.3316" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2025-02-16" view-index="0" gantt-divider-location="555" resource-divider-location="300" version="3.3.3316" locale="en_US">
     <description/>
     <view zooming-state="default:5" id="gantt-chart">
-        <field id="tpd3" name="Name" width="316" order="0"/>
-        <field id="tpd4" name="Begin date" width="118" order="1"/>
-        <field id="tpd5" name="End date" width="120" order="2"/>
+        <field id="tpd3" name="Name" width="307" order="0"/>
+        <field id="tpd4" name="Begin date" width="115" order="1"/>
+        <field id="tpd5" name="End date" width="117" order="2"/>
         <field id="tpd15" name="Notes" width="20" order="3"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
         <option id="filter.inProgressTodayTasks" value="false"/>
-        <option id="color.recent"><![CDATA[#0000cc #00ffff #ff00ff #ff0033 #0033ff #e1e1e1 #33ff00 #33ff33 #66ff00]]></option>
+        <option id="color.recent"><![CDATA[#ff0033 #0000cc #ff00ff #00ffff #0033ff #e1e1e1 #33ff00 #33ff33 #66ff00]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -60,21 +60,21 @@
         </task>
         <task id="3" uid="be4a688a55c844e295f680f0c3b7fa7f" name="Lot_C" meeting="false" start="2025-03-24" duration="21" complete="0" expand="true">
             <depend id="6" type="2" difference="0" hardness="Strong"/>
-            <task id="16" uid="56806cc19f724890abef1b45000707d3" name="C.1 - Initialisation du lot (Appliquer des normes et référentiels de qualité, Coordonner une équipe projet)" color="#ff0033" meeting="false" start="2025-03-24" duration="7" complete="0" expand="true">
+            <task id="16" uid="56806cc19f724890abef1b45000707d3" name="C.1 - Initialisation du lot (Appliquer des normes et référentiels de qualité, Coordonner une équipe projet)" color="#ff00ff" meeting="false" start="2025-03-24" duration="7" complete="0" expand="true">
                 <depend id="17" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="17" uid="c66c050c7e87481b946009e0e157ae4a" name="C.2 - Etude théorique de la main de J1 (Mobiliser des connaissances pour diagnostiquer et modéliser)" color="#ff0033" meeting="false" start="2025-04-02" duration="7" complete="0" expand="true">
+            <task id="17" uid="c66c050c7e87481b946009e0e157ae4a" name="C.2 - Etude théorique de la main de J1 (Mobiliser des connaissances pour diagnostiquer et modéliser)" color="#ff00ff" meeting="false" start="2025-04-02" duration="7" complete="0" expand="true">
                 <depend id="18" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="18" uid="82f8acd198864687a81a5ed2bed585d8" name="C.3 - Etude empirique de la main de J1 (Concevoir des modèles et des solutions techniques adaptées)" color="#ff0033" meeting="false" start="2025-04-11" duration="7" complete="0" expand="true"/>
-            <task id="19" uid="9455fed81c4c4f358bcfd53ef78b7093" name="C.4 - Comparaison théorique/empirique (Réaliser des analyses de cas pour une prise de décision éclairée)" color="#ff00ff" meeting="false" start="2025-03-24" duration="7" complete="0" expand="true">
+            <task id="18" uid="82f8acd198864687a81a5ed2bed585d8" name="C.3 - Etude empirique de la main de J1 (Concevoir des modèles et des solutions techniques adaptées)" color="#ff00ff" meeting="false" start="2025-04-11" duration="7" complete="0" expand="true"/>
+            <task id="19" uid="9455fed81c4c4f358bcfd53ef78b7093" name="C.4 - Comparaison théorique/empirique (Réaliser des analyses de cas pour une prise de décision éclairée)" color="#0000cc" meeting="false" start="2025-03-24" duration="7" complete="0" expand="true">
                 <depend id="20" type="2" difference="0" hardness="Strong"/>
                 <depend id="22" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="20" uid="ae1b01f2d82d43d98f36d20e5f1eaa0f" name="C.5 - Etude théorique de la main de J2, conditionnellement à la main de J1 (Mobiliser des connaissances pour diagnostiquer et modéliser)" color="#ff00ff" meeting="false" start="2025-04-02" duration="7" complete="0" expand="true">
+            <task id="20" uid="ae1b01f2d82d43d98f36d20e5f1eaa0f" name="C.5 - Etude théorique de la main de J2, conditionnellement à la main de J1 (Mobiliser des connaissances pour diagnostiquer et modéliser)" color="#0000cc" meeting="false" start="2025-04-02" duration="7" complete="0" expand="true">
                 <depend id="22" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="22" uid="74cb5aa54fea4a7eb64ac1394946dfb3" name="C.6 - Etude empirique de la main de J2, conditionnellement à la main de J1 (Concevoir des modèles et des solutions techniques adaptées)" color="#ff00ff" meeting="false" start="2025-04-11" duration="7" complete="0" expand="true"/>
+            <task id="22" uid="74cb5aa54fea4a7eb64ac1394946dfb3" name="C.6 - Etude empirique de la main de J2, conditionnellement à la main de J1 (Concevoir des modèles et des solutions techniques adaptées)" color="#0000cc" meeting="false" start="2025-04-11" duration="7" complete="0" expand="true"/>
             <task id="23" uid="5171a7273dd845428d04a95687ca760a" name="C.7 - Comparaison théorique/empirique (Réaliser des analyses de cas pour une prise de décision éclairée)" color="#00ffff" meeting="false" start="2025-03-24" duration="7" complete="0" expand="true">
                 <depend id="24" type="2" difference="0" hardness="Strong"/>
             </task>
@@ -82,13 +82,13 @@
                 <depend id="25" type="2" difference="0" hardness="Strong"/>
             </task>
             <task id="25" uid="32b39ffad991489891f8bbaf4b4b13b7" name="C.9 - Etude empirique de la main de J2 (Concevoir des modèles et des solutions techniques adaptées)" color="#00ffff" meeting="false" start="2025-04-11" duration="7" complete="0" expand="true"/>
-            <task id="26" uid="fdcb7f6503ea4ac3aedcafb2254e1c9f" name="C.10 - Etude empirique alternative de la main de J2 (Concevoir des modèles et des solutions techniques adaptées)" color="#0000cc" meeting="false" start="2025-03-24" duration="7" complete="0" expand="true">
+            <task id="26" uid="fdcb7f6503ea4ac3aedcafb2254e1c9f" name="C.10 - Etude empirique alternative de la main de J2 (Concevoir des modèles et des solutions techniques adaptées)" color="#ff0033" meeting="false" start="2025-03-24" duration="7" complete="0" expand="true">
                 <depend id="27" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="27" uid="ae758931493440f585a833768907f1f0" name="C.11 - Comparaison théorique/empirique (Réaliser des analyses de cas pour une prise de décision éclairée)" color="#0000cc" meeting="false" start="2025-04-02" duration="7" complete="0" expand="true">
+            <task id="27" uid="ae758931493440f585a833768907f1f0" name="C.11 - Comparaison théorique/empirique (Réaliser des analyses de cas pour une prise de décision éclairée)" color="#ff0033" meeting="false" start="2025-04-02" duration="7" complete="0" expand="true">
                 <depend id="28" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="28" uid="1f912c2828d346339bce2611299760e9" name="C.12 - Calculs supplémentaires (Mobiliser des connaissances pour diagnostiquer et modéliser)" color="#0000cc" meeting="false" start="2025-04-11" duration="7" complete="0" expand="true"/>
+            <task id="28" uid="1f912c2828d346339bce2611299760e9" name="C.12 - Calculs supplémentaires (Mobiliser des connaissances pour diagnostiquer et modéliser)" color="#ff0033" meeting="false" start="2025-04-11" duration="7" complete="0" expand="true"/>
         </task>
         <task id="4" uid="c9d09b256b78436c83cdf7e00b840e49" name="Lot_D" meeting="false" start="2025-02-17" duration="39" complete="0" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
@@ -151,9 +151,6 @@
         <allocation task-id="51" resource-id="0" function="1" responsible="true" load="100.0"/>
         <allocation task-id="11" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="15" resource-id="1" function="1" responsible="true" load="100.0"/>
-        <allocation task-id="27" resource-id="1" function="1" responsible="true" load="100.0"/>
-        <allocation task-id="26" resource-id="1" function="1" responsible="true" load="100.0"/>
-        <allocation task-id="28" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="29" resource-id="1" function="1" responsible="false" load="100.0"/>
         <allocation task-id="33" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="37" resource-id="1" function="1" responsible="true" load="100.0"/>
@@ -161,11 +158,11 @@
         <allocation task-id="41" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="47" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="52" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="19" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="20" resource-id="1" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="22" resource-id="1" function="1" responsible="true" load="100.0"/>
         <allocation task-id="9" resource-id="2" function="1" responsible="true" load="100.0"/>
         <allocation task-id="13" resource-id="2" function="1" responsible="false" load="100.0"/>
-        <allocation task-id="19" resource-id="2" function="1" responsible="true" load="100.0"/>
-        <allocation task-id="20" resource-id="2" function="1" responsible="true" load="100.0"/>
-        <allocation task-id="22" resource-id="2" function="1" responsible="true" load="100.0"/>
         <allocation task-id="21" resource-id="2" function="1" responsible="true" load="100.0"/>
         <allocation task-id="31" resource-id="2" function="1" responsible="true" load="100.0"/>
         <allocation task-id="35" resource-id="2" function="1" responsible="true" load="100.0"/>
@@ -173,11 +170,11 @@
         <allocation task-id="42" resource-id="2" function="1" responsible="false" load="100.0"/>
         <allocation task-id="45" resource-id="2" function="1" responsible="true" load="100.0"/>
         <allocation task-id="50" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="16" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="17" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="18" resource-id="2" function="1" responsible="true" load="100.0"/>
         <allocation task-id="1" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="12" resource-id="3" function="Default:1" responsible="false" load="100.0"/>
-        <allocation task-id="16" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="17" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="18" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="21" resource-id="3" function="Default:1" responsible="false" load="100.0"/>
         <allocation task-id="30" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="34" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
@@ -185,6 +182,9 @@
         <allocation task-id="42" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="44" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="49" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="26" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="27" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="28" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
     </allocations>
     <vacations/>
     <previous/>
