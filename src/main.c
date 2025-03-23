@@ -33,7 +33,7 @@ int main() {
                 set_value(c, (k + 1)); 
                 add_card_to_hand(p, c);
                 all_card_id[count] = get_card_id(c);
-                count++ ;
+                count++;
             }
         }
     }
