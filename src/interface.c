@@ -4,6 +4,7 @@
 #include "../include/board.h"
 #include "../include/player.h"
 #include "../include/interface.h"
+#include "../src/board.c" // Structures board et team
 
 /** 
 \brief : affiche toutes les infos du jeu (plateau, joueuses, équipes, scores, mains, paris, ...)
