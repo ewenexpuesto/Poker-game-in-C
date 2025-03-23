@@ -4,6 +4,7 @@
 #include "../include/board.h"
 #include "../include/player.h"
 #include "../include/interface.h"
+#include "../src/board.c" // Structures board et team
 
 /** 
 \brief : affiche toutes les infos du jeu (plateau, joueuses, équipes, scores, mains, paris, ...)
@@ -15,7 +16,7 @@
     printf("Il y a %d équipes\n",get_number_of_teams(b)); 
     
     /* Pour la première équipe */
-    team team1 = b.team1;
+    team team1 = b->team1;
     printf("Dans l'équipe team1 il y a %d joueuses\n", get_number_of_players_in_team(b, team1.team_id)); 
     player player1_1 = get_player(b, team1.team_id, 0);
     player player1_2 = get_player(b, team1.team_id, 1);
@@ -61,7 +62,7 @@
     printf("Le score de l'équipe 1 est %d", get_score_of_team(b, team1.team_id));
     
    /* Pour la deuxième équipe */
-    team team2 = b.team2;
+    team team2 = b->team2;
     printf("Dans l'équipe team2 il y a %d joueuses", get_number_of_players_in_team(b, team2.team_id));
     player player2_1 = get_player(b, team2.team_id, 0);
     player player2_2 = get_player(b, team2.team_id, 1);
@@ -188,11 +189,11 @@ card ask_card(player p){
 void display_end_game(board b)
 {
     printf("Fin du jeu !\n");
-    if(get_score_of_team(b,b.team1)>get_score_of_team(b,b.team2)) // cas ou le score de l'équipe 1 est supérieur
+    if(get_score_of_team(b,b->team1.team_id)>get_score_of_team(b,b->team2.team_id)) // cas ou le score de l'équipe 1 est supérieur
     {
         printf("l'équipe victorieuse est l'équie team1 ");
     }
-    if(get_score_of_team(b,b.team1)<get_score_of_team(b,b.team2)) // cas ou le score de l'équipe 2 est supérieur
+    if(get_score_of_team(b,b->team1.team_id)<get_score_of_team(b,b->team2.team_id)) // cas ou le score de l'équipe 2 est supérieur
     {
         printf("l'équipe victorieuse est l'équie team2 ");
     }
