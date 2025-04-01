@@ -1,15 +1,32 @@
+#ifndef BOARD_H
+#define BOARD_H
+
 #include "card.h"
 #include "player.h"
+
+struct team {
+    int team_id;
+    player player1;
+    player player2;
+    int score;
+};
+
+/**
+ * \brief Une variable de type team permettra d'accéder à toutes les informations relatives à une équipe
+ */
+typedef struct team team;
+
+struct board {
+    team team1;
+    team team2;
+    card * out_of_game_cards;
+};
 
 /**
  * \brief Une variable de type board permettra d'accéder à toutes les informations relatives au plateau de jeu
  */
 typedef struct board * board;
 
-/**
- * \brief Une variable de type team permettra d'accéder à toutes les informations relatives à une équipe
- */
-typedef struct team team;
 
 /**
  * \brief Cette fonction devra allouer la mémoire nécessaire pour créer un nouveau plateau
@@ -112,3 +129,6 @@ card get_out_of_game_card(board b, int card_index);
  * \return void
  */
 void remove_out_of_game_card(board b, card c);
+
+
+#endif /* BOARD_H */

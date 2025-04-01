@@ -2,19 +2,6 @@
 #include "../include/card.h"
 #include "../include/player.h"
 
-struct team {
-    int team_id;
-    player player1;
-    player player2;
-    int score;
-};
-
-struct board {
-    team team1;
-    team team2;
-    card * out_of_game_cards;
-};
-
 board create_board() {
     board b = malloc(sizeof(*b));
     b->team1.team_id = -1;

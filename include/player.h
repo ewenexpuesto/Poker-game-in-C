@@ -106,7 +106,7 @@ int get_player_id (player p);
  * \return une carte
  */
 
- card get_played_card(player p, card card_index);
+ card get_played_card(player p, int card_index);
 
 
 /**
