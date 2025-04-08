@@ -25,6 +25,7 @@ void add_team(board b) {
     if (b->team1.team_id == -1) {
         b->team1.team_id = 0;
     }
+
     else if (b->team2.team_id == -1) {
         b->team2.team_id = 1;
     }
@@ -56,7 +57,8 @@ void add_player_to_team(board b, int team_id, player player) {
             printf("Error: too many players\n");
         }
     }
-    else if (b->team2.team_id == team_id) {
+    
+    if (b->team2.team_id == team_id) {
         if (b->team2.player1 == NULL) {
             b->team2.player1 = player;
         }
@@ -67,10 +69,11 @@ void add_player_to_team(board b, int team_id, player player) {
             printf("Error: too many players\n");
         }
     }
-    else {
+
+    if(!(b->team1.team_id == team_id) && !(b->team2.team_id == team_id)) {
         printf("Error: wrong team id\n");
     }
-    printf("Unknown error\n");
+
 }
 
 int get_number_of_players_in_team(board b, int team_id) {

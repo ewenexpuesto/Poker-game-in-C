@@ -14,11 +14,10 @@ struct player_s
     int team_id;                /*l'identifiant de son équipe*/
 };
 
-int creation_id()       /*creer un identifiant id unique qui commence à 0 pour la première joueuse*/
+int creation_id_bis()       /*creer un identifiant id unique qui commence à 0 pour la première joueuse*/
 {
     static int id = 0;
-    return id;
-    id++;
+    return id++;
 }
 
 player player_tab[4];       /*on créer un tableau de joueuses*/
@@ -44,7 +43,7 @@ player create_player()
     p->cards_on_table = NULL;
     p->table = 0;
     p->ardoise = 0;
-    p->id = creation_id();
+    p->id = creation_id_bis();
     player_tab[p->id] = p;      /*l'identifiant de la joueuse est sa place dans le tableau des joueuses*/
     return p;
 };
