@@ -10,7 +10,7 @@ struct card_s
 
 card card_tab[20];
 
-int creation_id()
+int creation_id_card()
 {
     static int id = 0;
     return id;
@@ -32,7 +32,7 @@ card create_card()
         perror("Erreur durant l'allocation");
         exit(1);
     }
-    c->id_card = creation_id();
+    c->id_card = creation_id_card();
     card_tab[c->id_card] = c;
     c->value = 0;
     return c;
