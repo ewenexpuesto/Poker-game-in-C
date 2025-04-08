@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2025-02-16" view-index="0" gantt-divider-location="555" resource-divider-location="300" version="3.3.3316" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2025-02-10" view-index="0" gantt-divider-location="540" resource-divider-location="300" version="3.3.3316" locale="en_GB">
     <description/>
     <view zooming-state="default:5" id="gantt-chart">
-        <field id="tpd3" name="Name" width="307" order="0"/>
-        <field id="tpd4" name="Begin date" width="115" order="1"/>
-        <field id="tpd5" name="End date" width="117" order="2"/>
+        <field id="tpd3" name="Name" width="298" order="0"/>
+        <field id="tpd4" name="Begin date" width="112" order="1"/>
+        <field id="tpd5" name="End date" width="114" order="2"/>
         <field id="tpd15" name="Notes" width="20" order="3"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
         <option id="filter.inProgressTodayTasks" value="false"/>
-        <option id="color.recent"><![CDATA[#ff0033 #0000cc #ff00ff #00ffff #0033ff #e1e1e1 #33ff00 #33ff33 #66ff00]]></option>
+        <option id="color.recent"><![CDATA[#00ffff #ff0033 #0000cc #ff00ff #0033ff #e1e1e1 #33ff00 #33ff33 #66ff00]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -93,7 +93,7 @@
         <task id="4" uid="c9d09b256b78436c83cdf7e00b840e49" name="Lot_D" meeting="false" start="2025-02-17" duration="39" complete="0" expand="true">
             <depend id="7" type="2" difference="0" hardness="Strong"/>
             <task id="21" uid="f6f5eb5d3c4644ffbcb6f5bc572e1174" name="D.1 - Développement" color="#ff00ff" meeting="false" start="2025-02-17" duration="39" complete="0" expand="true"/>
-            <task id="29" uid="b9503c6d12a048a0b4b3924d4a50dcd3" name="D.2 - Évaluation, rapport d'évaluation" color="#0000cc" meeting="false" start="2025-02-17" duration="39" complete="0" expand="true"/>
+            <task id="29" uid="b9503c6d12a048a0b4b3924d4a50dcd3" name="D.2 - Évaluation, rapport d'évaluation" color="#00ffff" meeting="false" start="2025-02-17" duration="39" complete="0" expand="true"/>
         </task>
         <task id="5" uid="a62aa1bd66c246aeaf752a7f312ceb61" name="Lot_E" meeting="false" start="2025-03-24" duration="60" complete="0" expand="true">
             <depend id="8" type="2" difference="0" hardness="Strong"/>
