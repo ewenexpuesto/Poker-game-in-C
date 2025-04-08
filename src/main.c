@@ -19,6 +19,8 @@ int main() {
     /* Ajout des équipes et des joueuses */
     int all_card_id[NB_CARDS];
     int count = 0;
+    
+    card* card_tot = malloc(20 * sizeof(card));
 
     for (int i = 0; i < NB_TEAMS; i++) {
         add_team(b);
@@ -31,13 +33,23 @@ int main() {
             for (int k = 0; k < 5; k++) {
                 card c = create_card();
                 set_value(c, (k + 1)); 
-                add_card_to_hand(p, c);
+                card_tot[count] = c;
                 all_card_id[count] = get_card_id(c);
                 count++;
             }
         }
     }
-    
+
+    for (int i = 0; i < NB_TEAMS; i++) {
+        for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+            for (int k = 0; k < 5; k++) {
+                int random_index = rand() % (NB_CARDS - k);
+                player p = get_player(b, i, j);
+                card c = card_tot[random_index];
+                add_card_to_hand(p, c);
+            }
+        }
+    }
     /* Déroulement des tours */
 
     for (int round = 0; round < NB_ROUNDS; round++) {
