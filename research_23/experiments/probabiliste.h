@@ -1,7 +1,6 @@
 #include "../../include/board.h"
 #include "../../include/card.h"
 #include "../../include/player.h"
-#include "../../include/interface.h"
 
 #ifndef PROBABILISTE_H
 #define PROBABILISTE_H

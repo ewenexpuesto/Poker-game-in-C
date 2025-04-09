@@ -2,7 +2,6 @@
 #include "../../include/board.h"
 #include "../../include/card.h"
 #include "../../include/player.h"
-#include "../../include/interface.h"
 
 #define NB_TEAMS 2
 #define NB_PLAYERS_TEAM 2
