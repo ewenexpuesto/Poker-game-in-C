@@ -1,3 +1,5 @@
+// Pour la facilité d'implémentation, le code reprend des bouts de code du main.c, qui malheureusement ne pouvait pas être modulaire selon les consignes, afin de recréer le déroulement du jeu
+
 #include "probabiliste.h"
 #include "../../include/board.h"
 #include "../../include/card.h"
