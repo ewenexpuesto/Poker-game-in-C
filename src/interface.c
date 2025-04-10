@@ -4,8 +4,6 @@
 #include "../include/board.h"
 #include "../include/player.h"
 #include "../include/interface.h"
-
-/* nothing, just a test */
  
 /** 
 \brief : affiche toutes les infos du jeu (plateau, joueuses, équipes, scores, mains, paris, ...)
