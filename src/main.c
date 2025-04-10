@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h>              
 #include <stdlib.h>
 #include "../include/board.h"
 #include "../include/card.h"
@@ -13,6 +13,7 @@
 int main() {
 
     /* Initialisation du plateau */
+    display_message("Le jeu va commencer \n");
 
     board b = create_board();
     
@@ -50,12 +51,15 @@ int main() {
             }
         }
     }
+
     /* Déroulement des tours */
 
     for (int round = 0; round < NB_ROUNDS; round++) {
         display_board(b);
         
         /* Phase de pari */
+
+        display_message("Le pari à noter est \"Victoire\" ou \"Défaite\"\n\n");
 
         for (int i = 0; i < NB_TEAMS; i++) {
             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
@@ -73,12 +77,19 @@ int main() {
             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
                 player p = get_player(b, i, j);
                 int nb_cards = ask_number_of_played_cards(p);
+                card* played_cards = malloc(nb_cards * sizeof(card));
                 for (int k = 0; k < nb_cards; k++) {
                     card c = ask_card(p);
                     play_card(p, c);
-                    remove_card_from_hand(p,c);
+                    played_cards[k] = c;
                     team_scores[i] += get_value(c);
+                    printf("%d\n",team_scores[i]);
                 }
+
+                for (int k = 0; k < nb_cards; k++) {
+                    remove_card_from_hand(p, played_cards[k]);
+                }
+
             }
         }
         
