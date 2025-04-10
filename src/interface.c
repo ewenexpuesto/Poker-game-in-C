@@ -150,24 +150,39 @@
 */
  
 int ask_gamble(player p){
+    int gamble = -1; // initialisation de la variable gamble
     printf("Joueuse %d, quel est votre pari ? ", get_player_id(p));
-    char reponse[3]; // "V" pour victoire, "D" pour défaite + "\n" et "\0"
+    char reponse[11]; // 8 caractères dans "Victoire" et 7 dans "Défaite" + "\n" et "\0"
     if (fgets(reponse, sizeof(reponse), stdin) == NULL) // utilisation de fgets pour lire un a un les caractères de la réponse
     {
         fprintf(stderr, "Erreur dans la lecture de la réponse\n");
         exit(1);
     } 
  
-    if(strstr(reponse, "V")== 0)
+    while (strstr(reponse, "v") == NULL && strstr(reponse, "d") == NULL) // tant que la réponse ne contient pas "Victoire" ou "Defaite"
     {
-        return 1;
+        printf("Réponse invalide. Veuillez entrer 'Victoire' ou 'Defaite'.\n");
+        if (fgets(reponse, sizeof(reponse), stdin) == NULL) // utilisation de fgets pour lire un a un les caractères de la réponse
+        {
+            fprintf(stderr, "Erreur dans la lecture de la réponse\n");
+            exit(1);
+        } 
     }
-    if(strstr(reponse, "D") == 0)
     {
-        return 0;
+        /* code */
     }
  
-    return -1; // valeur par défaut si la réponse n'est pas reconnue
+ 
+    if(strstr(reponse, "v") != NULL) // si la réponse contient "Victoire"
+    {
+        gamble = 1; // pari de victoire
+    }
+    else if(strstr(reponse, "v") != NULL) // si la réponse contient "Defaite"
+    {
+        gamble = 0; // pari de défaite
+    }
+ 
+    return gamble; // valeur par défaut si la réponse n'est pas reconnue
 }
  
  
@@ -197,17 +212,17 @@ int ask_number_of_played_cards(player p){
 \return : carte c que la joueuse souhaite jouer
 */
 card ask_card(player p){
-    printf("Joueuse %d, quelle est la carte de votre de votre main que vous souhaitez jouer ?", get_player_id(p));
-    int reponse;// pour stocker la réponse, 
-    if (scanf("%d",&reponse)==1) // utilisation de scanf pour lire la réponse
+    int reponse = 0;
+    printf("Entrez l'indice de la carte que vous voulez jouer (0 à %d) ", get_size_of_hand(p)-1); // on demande à la joueuse de choisir une carte
+    scanf("%d",&reponse); // utilisation de scanf pour lire la réponse
+    //printf("test\n");
+    while (reponse >= get_size_of_hand(p)) // tant que la réponse ne contient pas "Victoire" ou "Defaite"
     {
-        return get_card_by_id(reponse);
+        printf("Réponse invalide. Veuillez entrer un indice entre 0 et 4.\n");
+        scanf("%d",&reponse); // utilisation de scanf pour lire la réponse
     }
-    else 
-    {
-        fprintf(stderr, "Erreur dans la lecture de la réponse\n");
-        exit(1);
-    }
+ 
+    return get_card_in_hand(p, reponse); // on récupère la carte à l'indice donné par la joueuse
 }
  
  
