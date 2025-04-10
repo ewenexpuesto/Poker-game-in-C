@@ -151,18 +151,18 @@
  
 int ask_gamble(player p){
     printf("Joueuse %d, quel est votre pari ? ", get_player_id(p));
-    char reponse[11]; // 8 caractères dans "Victoire" et 7 dans "Défaite" + "\n" et "\0"
+    char reponse[3]; // "V" pour victoire, "D" pour défaite + "\n" et "\0"
     if (fgets(reponse, sizeof(reponse), stdin) == NULL) // utilisation de fgets pour lire un a un les caractères de la réponse
     {
         fprintf(stderr, "Erreur dans la lecture de la réponse\n");
         exit(1);
     } 
  
-    if(strstr(reponse, "Victoire")== 0)
+    if(strstr(reponse, "V")== 0)
     {
         return 1;
     }
-    if(strstr(reponse, "Defaite") == 0)
+    if(strstr(reponse, "D") == 0)
     {
         return 0;
     }
