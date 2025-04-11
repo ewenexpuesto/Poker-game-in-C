@@ -26,7 +26,7 @@ int main()
     {
         srand(time(NULL));
         /*la partie se joue en n tours avec n compris entre 3 et 5*/
-        int nombre = rand() % 3 + 3;
+        int ne = rand() % 3 + 3;
         printf("n :%d", n);
         clock_t debut = clock();
         int *scores = probabiliste(n); /*on lance une partie avec la fonction probabiliste*/
