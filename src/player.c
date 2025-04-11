@@ -40,7 +40,7 @@ player create_player()
     }
     p->cards_in_hand = malloc(6 * sizeof(card));        
     p->hand = 0;
-    p->cards_on_table = NULL;
+    p->cards_on_table = malloc (5 * sizeof(card));
     p->table = 0;
     p->ardoise = 0;
     p->id = creation_id_bis();
@@ -167,7 +167,7 @@ void remove_card_from_hand(player p, card c)
 void play_card(player p, card c)
 {
     p->cards_on_table[p->table] = c;
-    p->table++;
+    p->table = p->table + 1;
 }
 
 

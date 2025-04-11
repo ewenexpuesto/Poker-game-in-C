@@ -1,5 +1,5 @@
 #Compiler : gcc ou clang
-CC = gcc
+CC = gcc -g
 
 #Options
 CFLAGS = -Wall -Wextra -std=c99 
