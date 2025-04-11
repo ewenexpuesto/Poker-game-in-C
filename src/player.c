@@ -38,7 +38,7 @@ player create_player()
         perror("Erreur durant l'allocation");       
         exit(1);
     }
-    p->cards_in_hand = malloc(6 * sizeof(card));        
+    p->cards_in_hand = malloc(5 * sizeof(card));        
     p->hand = 0;
     p->cards_on_table = malloc (5 * sizeof(card));
     p->table = 0;
@@ -113,7 +113,7 @@ int get_size_of_hand(player p)
 {
     return p->hand;
 }
- 
+    
  
 /**
  * \brief Renvoie la carte de la main de la joueuse 
@@ -137,12 +137,13 @@ card get_card_in_hand(player p, int card_index)
 void remove_card_from_hand(player p, card c)
 {
     int id_card = get_card_id(c);
+
     int j = -1;
-    for (int i = 0; i < p->hand; i++)
+    for (int i = 0; i < get_size_of_hand(p); i++)
     {
         if (get_card_id(p->cards_in_hand[i]) == id_card)
         {
-            free(p->cards_in_hand[i]);
+            //free(p->cards_in_hand[i]);
             j = i;          
             break;
         }
@@ -151,7 +152,11 @@ void remove_card_from_hand(player p, card c)
     {
         for (int i = j; i < p->hand - 1; i++)
         {
-            p->cards_in_hand[i] = p->cards_in_hand[i + 1];
+            printf("i : %d\n", p->hand);
+            printf("c[i] : %d\n", get_value(p->cards_in_hand[i]));
+            printf("c[i+1] : %d\n", get_value(p->cards_in_hand[i+1]));
+            printf("j : %d\n", j);
+            p->cards_in_hand[i] = p->cards_in_hand[i - 1];
         }
         p->hand--;
     }
@@ -209,7 +214,6 @@ void remove_played_card(player p, card c)
     {
         if (get_card_id(p->cards_on_table[i]) == id_card)
         {
-            free(p->cards_on_table[i]);
             j = i;
             break;
         }

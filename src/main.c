@@ -87,8 +87,9 @@ int main() {
                     card c = ask_card(p);
                     play_card(p, c);
                     add_out_of_game_card(b,c);
-                    remove_played_card(p,c);
+                    remove_card_from_hand(p,c);
                     team_scores[i] += get_value(c);
+                    printf("%d\n", team_scores[i]);
                 }
 
                 else{
@@ -110,8 +111,8 @@ int main() {
                     team_scores[i] += get_value(c2);
                     printf("%d\n", team_scores[i]);
 
-                    add_out_of_game_card(b,c1);
-                    add_out_of_game_card(b,c2);
+                    ///add_out_of_game_card(b,c1);
+                    //add_out_of_game_card(b,c2);
 
                     remove_card_from_hand(p, c1);
                     remove_card_from_hand(p, c2);
