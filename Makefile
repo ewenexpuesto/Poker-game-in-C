@@ -1,5 +1,5 @@
 #Compiler : gcc ou clang
-CC = gcc -g
+CC = gcc
 
 #Options
 CFLAGS = -Wall -Wextra -std=c99 
@@ -23,12 +23,17 @@ INCDIR = include
 $(OBJDIR)/%.o: $(SRCDIR)/%.c # <==> %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# added the following for probabiliste.c
+$(OBJDIR)/probabiliste.o: research_23/experiments/probabiliste.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 #Dépendencies 
 
 board.o : $(SRCDIR)/board.c 
 player.o : $(SRCDIR)/player.c 
 interface.o : $(SRCDIR)/interface.c
 card.o : $(SRCDIR)/card.c 
+probabiliste.o: research_23/experiments/probabiliste.c # added this for probabiliste.c
 main.o: $(SRCDIR)/main.c 
 
 OBJS = $(OBJDIR)/board.o $(OBJDIR)/player.o $(OBJDIR)/interface.o $(OBJDIR)/card.o $(OBJDIR)/main.o
