@@ -14,7 +14,7 @@ int main()
 {
     printf("ca commence\n");
     FILE *fd = fopen("resultats1.csv", "w");
-    
+
     if (!fd)
     {
         perror("Erreur ouverture fichier resultats.csv");
