@@ -225,21 +225,12 @@ int ask_number_of_played_cards(player p){
 */
 card ask_card(player p){
     int reponse = 0;
-<<<<<<< HEAD
     //static int used_indices[5] = {0}; 
     printf("Entrez l'indice de la carte que vous voulez jouer (0 à %d) ", get_size_of_hand(p)-1); // on demande à la joueuse de choisir une carte
     scanf("%d",&reponse); // utilisation de scanf pour lire la réponse
     //printf("test\n");
     while (reponse < 0 || reponse >= get_size_of_hand(p) /*|| used_indices[reponse]*/)
     {/*
-=======
-    static int used_indices[5] = {0}; 
-    printf("Entrez l'indice de la carte que vous voulez jouer (0 à %d) ", get_size_of_hand(p)-1); // on demande à la joueuse de choisir une carte
-    scanf("%d",&reponse); // utilisation de scanf pour lire la réponse
-    //printf("test\n");
-    while (reponse < 0 || reponse >= get_size_of_hand(p) || used_indices[reponse]) // tant que la réponse ne contient pas "Victoire" ou "Defaite"
-    {
->>>>>>> b9795a52359a759b77418943b0c79e27e7526c23
         if(used_indices[reponse]) // si la carte a déjà été jouée
         {
             printf("Cette carte a déjà été jouée. Veuillez en choisir un autre indice.\n");
@@ -248,7 +239,6 @@ card ask_card(player p){
         {
             printf("Indice invalide. Veuillez entrer un indice entre 0 et %d.\n", get_size_of_hand(p)-1);
         }
-<<<<<<< HEAD
         */
         printf("Indice invalide. Veuillez entrer un indice entre 0 et %d.\n", get_size_of_hand(p)-1);
         scanf("%d",&reponse); // utilisation de scanf pour lire la réponse
@@ -256,13 +246,6 @@ card ask_card(player p){
     
     //used_indices[reponse] = 1;
 
-=======
-        scanf("%d",&reponse); // utilisation de scanf pour lire la réponse
-    }
- 
-    used_indices[reponse] = 1;
- 
->>>>>>> b9795a52359a759b77418943b0c79e27e7526c23
     return get_card_in_hand(p, reponse); // on récupère la carte à l'indice donné par la joueuse
 }
  
