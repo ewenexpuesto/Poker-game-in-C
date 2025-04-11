@@ -10,7 +10,7 @@
 #define N_MIN 3
 #define N_MAX 60
 
-int experience1()
+int main()
 {
     FILE *fd = fopen("resultats1.csv", "w");
     if (!fd)
@@ -31,7 +31,7 @@ int experience1()
         double temps_ms = ((double)(fin - debut)) * 1000.0 / CLOCKS_PER_SEC;
         int victoires = scores[1];
         fprintf(fd, "%d,%d,%.2f,%d, %d\n", i + 1, n, temps_ms, scores, victoires);
-        }
+    }
     fclose(fd);
     return 0;
 }
