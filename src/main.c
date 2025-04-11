@@ -77,31 +77,44 @@ int main() {
             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
                 player p = get_player(b, i, j);
                 int nb_cards = ask_number_of_played_cards(p);
-                if (nb_cards > 2 || nb_cards < 1) {
+
+                while (nb_cards > 2 || nb_cards < 1) {
                     display_message("Nombre de cartes à jouer invalide\n");
-                    nb_cards = get_size_of_hand(p);
+                    nb_cards = ask_number_of_played_cards(p);
                 }
-                card* played_cards = malloc(nb_cards * sizeof(card));
+
                 if (nb_cards == 1) {
-                    for (int k = 0; k < nb_cards; k++) {
-                        card c = ask_card(p);
-                        play_card(p, c);
-                        played_cards[k] = c;
-                        team_scores[i] += get_value(c);
+                    card c = ask_card(p);
+                    play_card(p, c);
+                    add_out_of_game_card(b,c);
+                    remove_played_card(p,c);
+                    team_scores[i] += get_value(c);
+                }
+
+                else{
+                    card c1 = ask_card(p);
+                    card c2 = ask_card(p);  
+
+                    while (c1 == c2){
+                        display_message("Vous avez joué 2 fois la même carte, veuillez jouer une autre carte");
+                        c2 = ask_card(p);
                     }
 
-                    for (int k = 0; k < nb_cards; k++) {
-                        remove_card_from_hand(p, played_cards[k]);
-                    }
-                }
-                else if (nb_cards == 2) {
-                    for (int k = 0; k < nb_cards; k++) {
-                        card c = ask_card(p);
-                        play_card(p, c);
-                        played_cards[k] = c;
-                        remove_card_from_hand(p, played_cards[k]);
-                        team_scores[i] += get_value(c);
-                    }
+                    printf("c2 : %d\n", get_value(c2));        
+                    play_card(p, c1);
+                    play_card(p, c2);
+
+
+                    team_scores[i] += get_value(c1);
+                    printf("%d\n", team_scores[i]);
+                    team_scores[i] += get_value(c2);
+                    printf("%d\n", team_scores[i]);
+
+                    add_out_of_game_card(b,c1);
+                    add_out_of_game_card(b,c2);
+
+                    remove_card_from_hand(p, c1);
+                    remove_card_from_hand(p, c2);
                 }
             }
         }
