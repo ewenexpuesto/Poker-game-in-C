@@ -8,19 +8,19 @@
 #include "interface.h"
 
 #define N_MIN 3
-#define N_MAX 20
+#define N_MAX 60
 
 int main()
 {
-    FILE *fd = fopen("resultats.csv", "w");
+    FILE *fd = fopen("resultats1.csv", "w");
     if (!fd)
     {
         perror("Erreur ouverture fichier resultats.csv");
         return 1;
     }
-    fprintf(fd, "n_tours,partie,temps_ms,score_methode\n");
+    fprintf(fd, "ième partie, n_tours,partie,temps_ms,scores, victoires\n");
     /*on crée 20 parties */
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 60; i++)
     {
         srand(time(NULL));
         /*la partie se joue en n tours avec n compris entre 3 et 20*/
