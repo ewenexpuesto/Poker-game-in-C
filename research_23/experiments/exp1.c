@@ -10,7 +10,7 @@
 #define N_MIN 3
 #define N_MAX 60
 
-int main()
+int experience1()
 {
     FILE *fd = fopen("resultats1.csv", "w");
     if (!fd)
@@ -29,9 +29,9 @@ int main()
         int scores = probabiliste(n); /*on lance une partie avec la fonction probabiliste*/
         clock_t fin = clock();
         double temps_ms = ((double)(fin - debut)) * 1000.0 / CLOCKS_PER_SEC;
-        fprintf(fd, "%d,%d,%.2f,%d, %d\n", i + 1, n, temps_ms, scores, victoires);
         int victoires = scores[1];
-    }
+        fprintf(fd, "%d,%d,%.2f,%d, %d\n", i + 1, n, temps_ms, scores, victoires);
+        }
     fclose(fd);
     return 0;
 }
