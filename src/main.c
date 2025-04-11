@@ -8,7 +8,7 @@
 #define NB_TEAMS 2
 #define NB_PLAYERS_TEAM 2
 #define NB_ROUNDS 3
-#define NB_CARDS 20
+//#define NB_CARDS 20 // déjà défini dans board.h
 
 int main() {
 
