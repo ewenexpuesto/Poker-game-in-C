@@ -7,12 +7,11 @@
 
 #define NB_TEAMS 2
 #define NB_PLAYERS_TEAM 2
-#define NB_ROUNDS 3
 #define NB_CARDS 20
 
 // HERE is where the main is modified
 
-int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_probabiliste_method) {
+int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_probabiliste_method, int NB_ROUNDS) {
 
     // HERE
     if (team_id_agressive_method !=0 || team_id_probabiliste_method != 1) {
@@ -538,12 +537,12 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
 //     return 0;
 // }
 
-int * probabiliste(/*int * distrib, int nb_teams, int nb_card_each_turn*/) {
+int * probabiliste(/*int * distrib, int nb_teams, int nb_card_each_turn*/ int n) {
     // One team must play one method and the other team must use the other method
     int team_id_agressive_method = 0;
     int team_id_probabiliste_method = 1;
     int * scores = malloc(NB_TEAMS * sizeof(int));
-    scores = agressive_probabiliste_method(team_id_agressive_method, team_id_probabiliste_method);
+    scores = agressive_probabiliste_method(team_id_agressive_method, team_id_probabiliste_method, n);
     return scores;
 }
 
