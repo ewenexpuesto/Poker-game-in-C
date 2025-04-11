@@ -29,7 +29,7 @@ int main()
         int n = (rand() % 18) + 3;
         printf("n :%d", n);
         clock_t debut = clock();
-        int scores = probabiliste(n); /*on lance une partie avec la fonction probabiliste*/
+        int* scores = probabiliste(n); /*on lance une partie avec la fonction probabiliste*/
         printf("scores : %d", scores);
         clock_t fin = clock();
         double temps_ms = ((double)(fin - debut)) * 1000.0 / CLOCKS_PER_SEC;
