@@ -4,10 +4,13 @@
 #include "../../include/board.h"
 #include "../../include/card.h"
 #include "../../include/player.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 #define NB_TEAMS 2
 #define NB_PLAYERS_TEAM 2
-#define NB_CARDS 20
+
+// MODIFIER RANDOM ET VARIABLES GLOBALES
 
 // HERE is where the main is modified
 
@@ -24,12 +27,17 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
     }
 
     /* Initialisation du plateau */
-
     board b = create_board();
     
     /* Ajout des équipes et des joueuses */
-    int all_card_id[NB_CARDS];
     int count = 0;
+    
+    card* card_tot = malloc(20 * sizeof(card));
+    if (card_tot == NULL) {
+        printf("Error: memory allocation failed for card_tot\n");
+        free_board(b);
+        return NULL;
+    }
 
     for (int i = 0; i < NB_TEAMS; i++) {
         add_team(b);
@@ -38,13 +46,30 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
             add_player_to_team(b, i, p);
 
             /* Distribution des cartes */
-
             for (int k = 0; k < 5; k++) {
                 card c = create_card();
                 set_value(c, (k + 1)); 
-                add_card_to_hand(p, c);
-                all_card_id[count] = get_card_id(c);
+                card_tot[count] = c;
                 count++;
+            }
+        }
+    }
+
+    // Création d'une copie du tableau pour suivre les cartes distribuées
+    int cards_used[20] = {0}; // 0 si la carte n'est pas utilisée, 1 sinon
+
+    for (int i = 0; i < NB_TEAMS; i++) {
+        for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+            player p = get_player(b, i, j);
+            for (int k = 0; k < 5; k++) {
+                // Trouver une carte non distribuée
+                int random_index;
+                do {
+                    random_index = rand() % 20;
+                } while (cards_used[random_index]);
+                
+                cards_used[random_index] = 1;
+                add_card_to_hand(p, card_tot[random_index]);
             }
         }
     }
@@ -85,6 +110,7 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
                     }
 
                     set_slate(p, gamble);
+                    gamble_type = 4;
                 }
             }
             else {
@@ -297,28 +323,42 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
         
     /* Fin du jeu */
     
-    /* Libération de la mémoire  */
+    /* Copier les scores avant de libérer la mémoire */
+    int * scores = malloc(NB_TEAMS * sizeof(int));
+    if (scores == NULL) {
+        printf("Error: memory allocation failed for scores\n");
+        
+        // Nettoyer la mémoire avant de quitter
+        free(card_tot);
+        for (int i = 0; i < NB_TEAMS; i++) {
+            for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+                player p = get_player(b, i, j);
+                free_player(p);
+            }
+        }
+        free_board(b);
+        return NULL;
+    }
+    
+    for (int i = 0; i < NB_TEAMS; i++) {
+        scores[i] = get_score_of_team(b, i);
+    }
+    
+    // Before freeing card_tot
+    for (int i = 0; i < 20; i++) {
+        free_card(card_tot[i]);
+    }
+    free(card_tot);
+    
     for (int i = 0; i < NB_TEAMS; i++) {
         for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
             player p = get_player(b, i, j);
-
             free_player(p);
         }
     }
     
-    for(int i = 0; i < NB_CARDS; i++){
-        card c = get_card_by_id(all_card_id[i]);
-        free_card(c);
-    }
-    
     free_board(b);
     
-    // HERE
-    // renvoie le score de chaque équipe
-    int * scores = malloc(NB_TEAMS * sizeof(int));
-    for (int i = 0; i < NB_TEAMS; i++) {
-        scores[i] = get_score_of_team(b, i);
-    }
     return scores;
 }
 
@@ -326,8 +366,179 @@ int * probabiliste(/*int * distrib, int nb_teams, int nb_card_each_turn*/ int n)
     // One team must play one method and the other team must use the other method
     int team_id_agressive_method = 0;
     int team_id_probabiliste_method = 1;
-    int * scores = malloc(NB_TEAMS * sizeof(int));
-    scores = agressive_probabiliste_method(team_id_agressive_method, team_id_probabiliste_method, n);
-    return scores;
+    int *result = agressive_probabiliste_method(team_id_agressive_method, team_id_probabiliste_method, n);
+    
+    // Reset global state after each call
+    reset_player_id_counter();
+    reset_card_id_counter();
+    reset_global_array1();
+    reset_global_array2();
+    
+    return result;
 }
 
+// ----------------------------------------------------------------------------------------------------------
+
+
+
+
+// int main() {
+
+//     /* Initialisation du plateau */
+//     display_message("Le jeu va commencer \n");
+
+//     board b = create_board();
+    
+//     /* Ajout des équipes et des joueuses */
+//     int count = 0;
+    
+//     card* card_tot = malloc(20 * sizeof(card));
+
+//     for (int i = 0; i < NB_TEAMS; i++) {
+//         add_team(b);
+//         for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+//             player p = create_player();
+//             add_player_to_team(b, i, p);
+
+//             /* Distribution des cartes */
+
+//             for (int k = 0; k < 5; k++) {
+//                 card c = create_card();
+//                 set_value(c, (k + 1)); 
+//                 card_tot[count] = c;
+//                 count++;
+//             }
+//         }
+//     }
+
+//     for (int i = 0; i < NB_TEAMS; i++) {
+//         for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+//             for (int k = 0; k < 5; k++) {
+//                 int random_index = rand() % (NB_CARDS - k);
+//                 player p = get_player(b, i, j);
+//                 card c = card_tot[random_index];
+//                 add_card_to_hand(p, c);
+//             }
+//         }
+//     }
+
+//     /* Déroulement des tours */
+
+//     for (int round = 0; round < NB_ROUNDS; round++) {
+//         display_board(b);
+        
+//         /* Phase de pari */
+
+//         display_message("\nLe pari à noter est \"v\" pour victoire ou \"d\" pour Défaite\n\n");
+
+//         for (int i = 0; i < NB_TEAMS; i++) {
+//             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+//                 player p = get_player(b, i, j);
+//                 int gamble = ask_gamble(p);
+//                 set_slate(p, gamble);
+//             }
+//         }
+        
+//         /* Phase de jeu */
+
+//         int team_scores[NB_TEAMS] = {0, 0};
+
+//         for (int i = 0; i < NB_TEAMS; i++) {
+//             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+//                 player p = get_player(b, i, j);
+//                 int nb_cards = ask_number_of_played_cards(p);
+
+//                 while (nb_cards > 2 || nb_cards < 1) {
+//                     display_message("Nombre de cartes à jouer invalide");
+//                     nb_cards = ask_number_of_played_cards(p);
+//                 }
+
+//                 if (nb_cards == 1) {
+//                     card c = ask_card(p);
+//                     play_card(p, c);
+//                     add_out_of_game_card(b,c);
+//                     remove_card_from_hand(p,c);
+//                     team_scores[i] += get_value(c);
+//                     //printf("%d\n", team_scores[i]);
+//                 }
+
+//                 else{
+//                     card c1 = ask_card(p);
+//                     card c2 = ask_card(p);  
+
+//                     while (c1 == c2){
+//                         display_message("Vous avez joué 2 fois la même carte, veuillez jouer une autre carte");
+//                         c2 = ask_card(p);
+//                     }
+
+//                     //printf("c2 : %d\n", get_value(c2));        
+//                     play_card(p, c1);
+//                     play_card(p, c2);
+
+
+//                     team_scores[i] += get_value(c1);
+//                     //printf("%d\n", team_scores[i]);
+//                     team_scores[i] += get_value(c2);
+//                     //printf("%d\n", team_scores[i]);
+
+//                     ///add_out_of_game_card(b,c1);
+//                     //add_out_of_game_card(b,c2);
+
+//                     remove_card_from_hand(p, c1);
+//                     remove_card_from_hand(p, c2);
+//                 }
+//             }
+//         }
+        
+//         /* Détermination du gagnant du tour */
+
+//         int max_score = 0;
+//         int winning_team = 1;
+
+//         if(team_scores[0] == team_scores[1]){
+//             display_message("Il y a égalité");
+//         }
+
+//         for (int i = 0; i < NB_TEAMS; i++) {
+//             if (team_scores[i] > max_score) {
+//                 max_score = team_scores[i];
+//                 winning_team = i;
+//             }
+//         }
+        
+//         /* Attribution des points */
+
+//         for (int i = 0; i < NB_TEAMS; i++) {
+//             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+//                 player p = get_player(b, i, j);
+//                 int gamble = get_slate(p);
+//                 if (winning_team == i && gamble == 1) {
+//                     set_score_of_team(b, i, get_score_of_team(b, i) + 1);
+//                 } else if (winning_team != i && gamble == 0) {
+//                     set_score_of_team(b, i, get_score_of_team(b, i) + 1);
+//                 }
+//             }
+//         }
+//         display_message("\nFin du tour ---------------------------------------------------\n");
+//     }
+    
+//     /* Fin du jeu */
+//     display_end_game(b);
+    
+//     /* Libération de la mémoire  */
+//     for (int i = 0; i < NB_TEAMS; i++) {
+//         for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+//             player p = get_player(b, i, j);
+//             free_player(p);
+//         }
+//     }
+
+//     for(int i = 0; i < NB_CARDS; i++){
+//         card c = get_card_by_id(i);
+//         free_card(c);
+//     }
+
+//     free_board(b);
+    
+//     return 0;
+// }
