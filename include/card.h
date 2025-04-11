@@ -10,6 +10,10 @@ d'après le sujet : paquet de 20 cartes, numérotées de 1 à 5. Il y a 4 cartes
 typedef struct card_s *card;
 ;
 
+void reset_card_id_counter();
+
+void reset_global_array2();
+
 /**
 \brief : renvoie une card initialement sans valeur
 \param : rien

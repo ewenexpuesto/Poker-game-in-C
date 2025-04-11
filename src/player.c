@@ -14,13 +14,32 @@ struct player_s
     int team_id;                /*l'identifiant de son équipe*/
 };
  
-int creation_id_bis()       /*creer un identifiant id unique qui commence à 0 pour la première joueuse*/
+int creation_id_bis(int reset)       /*creer un identifiant id unique qui commence à 0 pour la première joueuse*/
 {
     static int id = 0;
+    if (reset) {
+        id = 0;
+        return 0;
+    }
     return id++;
+
 }
  
 player player_tab[4];       /*on créer un tableau de joueuses*/
+
+void reset_player_id_counter() {
+    // This assumes your creation_id_bis() function uses a static counter
+    // You'll need to expose this counter or provide a reset method
+    extern int creation_id_bis(int reset);
+    creation_id_bis(1);  // Pass 1 to reset
+}
+
+void reset_global_array1() {
+    // Reset player_tab
+    for (int i = 0; i < 4; i++) {
+        player_tab[i] = NULL;
+    }
+}
  
  
 /**
@@ -42,7 +61,8 @@ player create_player()
     p->cards_on_table = malloc (5 * sizeof(card));
     p->table = 0;
     p->ardoise = -1; /*-1 signifie que la joueuse n'a pas encore parié*/
-    p->id = creation_id_bis();
+    p->id = creation_id_bis(0);
+    printf("ID de la joueuse : %d\n", p->id);
     player_tab[p->id] = p;      /*l'identifiant de la joueuse est sa place dans le tableau des joueuses*/
     return p;
 };
