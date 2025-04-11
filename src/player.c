@@ -29,7 +29,6 @@ player player_tab[4];       /*on créer un tableau de joueuses*/
  *  \param La fonction ne prend rien en entrée
  *  \return un player
  */
- 
 player create_player()
 {
     player p = malloc(sizeof(struct player_s));
@@ -38,11 +37,11 @@ player create_player()
         perror("Erreur durant l'allocation");       
         exit(1);
     }
-    p->cards_in_hand = malloc(6 * sizeof(card));        
+    p->cards_in_hand = malloc(5 * sizeof(card));        
     p->hand = 0;
     p->cards_on_table = malloc (5 * sizeof(card));
     p->table = 0;
-    p->ardoise = 0;
+    p->ardoise = -1; /*-1 signifie que la joueuse n'a pas encore parié*/
     p->id = creation_id_bis();
     player_tab[p->id] = p;      /*l'identifiant de la joueuse est sa place dans le tableau des joueuses*/
     return p;
@@ -53,7 +52,6 @@ player create_player()
  * \brief libére la mémoire allouée à la joueuse
  * \param p player
  */
- 
 void free_player(player p)
 {
     free(p->cards_in_hand);
@@ -67,7 +65,6 @@ void free_player(player p)
  * \param p player
  * \return un entier
  */
- 
 int get_player_id(player p)
 {
     return p->id;
@@ -79,7 +76,6 @@ int get_player_id(player p)
  * \param n entier
  * \return player
  */
- 
 player get_player_by_id(int n)
 {
     if (n >= 0 && n < 4) /*il ny a que 4 joueurs donc les identifiants sont compris entre 0 et 4*/
@@ -95,7 +91,6 @@ player get_player_by_id(int n)
  * \param p player et c card
  * \return La fonction ne renvoie rien
  */
- 
 void add_card_to_hand(player p, card c)
 {
     p->cards_in_hand[p->hand] = c;
@@ -108,49 +103,51 @@ void add_card_to_hand(player p, card c)
  * \param p player
  * \return un entier
  */
- 
 int get_size_of_hand(player p)
 {
     return p->hand;
 }
- 
+    
  
 /**
  * \brief Renvoie la carte de la main de la joueuse 
  * \param p player et card_index entier
  * \return une carte 
  */
- 
- 
 card get_card_in_hand(player p, int card_index)
 {
     return p->cards_in_hand[card_index];
 }
  
- 
+
 /**
  * \brief Supprime la carte de la main de la joueuse 
  * \param p player et c une carte
  * \return La fonction ne renvoie rien
  */
- 
 void remove_card_from_hand(player p, card c)
 {
     int id_card = get_card_id(c);
     int j = -1;
-    for (int i = 0; i < p->hand; i++)
+    for (int i = 0; i < get_size_of_hand(p); i++)
     {
         if (get_card_id(p->cards_in_hand[i]) == id_card)
         {
-            free(p->cards_in_hand[i]);
-            j = i;          
+            //free(p->cards_in_hand[i]);
+            //printf("CH %d\n", get_value(p->cards_in_hand[i]));
+            //printf("C %d \n", get_value(c));
+            j = i + 1; // IL FALLAIT CORRIGER CELA
             break;
         }
     }
-    if (j != -1)            /*si j=-1 alors la carte n'est pas en main*/
+    if (j != -1) /*si j=-1 alors la carte n'est pas en main*/
     {
         for (int i = j; i < p->hand - 1; i++)
         {
+            //printf("i : %d\n", p->hand);
+            //printf("c[i] : %d\n", get_value(p->cards_in_hand[i]));
+            //printf("c[i+1] : %d\n", get_value(p->cards_in_hand[i+1]));
+            //printf("j : %d\n", j);
             p->cards_in_hand[i] = p->cards_in_hand[i + 1];
         }
         p->hand--;
@@ -163,7 +160,6 @@ void remove_card_from_hand(player p, card c)
  * \param p player et c une carte
  * \return La fonction ne renvoie rien
  */
- 
 void play_card(player p, card c)
 {
     p->cards_on_table[p->table] = c;
@@ -176,7 +172,6 @@ void play_card(player p, card c)
  * \param p player
  * \return un entier
  */
- 
 int get_number_of_played_cards(player p)
 {
     return p->table;
@@ -188,7 +183,6 @@ int get_number_of_played_cards(player p)
  * \param p player et card_index une carte
  * \return une carte
  */
- 
 card get_played_card(player p, int card_index)
 {
     return p->cards_on_table[card_index];
@@ -200,7 +194,6 @@ card get_played_card(player p, int card_index)
  * \param p player et c une carte
  * \return La fonction ne renvoie rien
  */
- 
 void remove_played_card(player p, card c)
 {
     int id_card = get_card_id(c);
@@ -209,12 +202,11 @@ void remove_played_card(player p, card c)
     {
         if (get_card_id(p->cards_on_table[i]) == id_card)
         {
-            free(p->cards_on_table[i]);
-            j = i;
+            j = i + 1; // IL FALLAIT CORRIGER CELA ICI AUSSI
             break;
         }
     }
-    if (j != -1)        /*si j=-1 alors la carte n'est pas sur la table*/
+    if (j != -1) /*si j=-1 alors la carte n'est pas sur la table*/
     {
         for (int i = j; i < p->table - 1; i++)
         {
@@ -230,7 +222,6 @@ void remove_played_card(player p, card c)
  * \param p player
  * \return un entier
  */
- 
 int get_slate(player p)
 {
     return p->ardoise;
@@ -242,7 +233,6 @@ int get_slate(player p)
  * \param p player, n entier
  * \return La fonction ne renvoie rien
  */
- 
 void set_slate(player p, int n)
 {
     if (n == 0 || n == 1)
