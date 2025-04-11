@@ -20,7 +20,7 @@ int main()
         perror("Erreur ouverture fichier resultats.csv");
         return 1;
     }
-    fprintf(fd, "ième partie, n_tours,partie,temps_ms,scores, victoires\n");
+    fprintf(fd, "ième partie, n_tours,partie,temps_ms,scores[0], scores[1], victoires\n");
     /*on crée 20 parties */
     for (int i = 0; i < 60; i++)
     {
@@ -30,11 +30,11 @@ int main()
         printf("n :%d", n);
         clock_t debut = clock();
         int* scores = probabiliste(n); /*on lance une partie avec la fonction probabiliste*/
-        printf("scores : %d", scores);
+        printf("scores : %d, %d", scores[0], scores[1]);
         clock_t fin = clock();
         double temps_ms = ((double)(fin - debut)) * 1000.0 / CLOCKS_PER_SEC;
         int victoires = scores[1];
-        fprintf(fd, "%d,%d,%.2f,%d, %d\n", i + 1, n, temps_ms, scores, victoires);
+        fprintf(fd, "%d,%d,%.2f,%d, %d, %d\n", i + 1, n, temps_ms, scores[0], scores[1], victoires);
     }
     fclose(fd);
     return 0;
