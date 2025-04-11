@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include "probabiliste.h"
-#include "player.h"
-#include "board.h"
-#include "card.h"
-#include "interface.h"
+#include "../../include/player.h"
+#include "../../include/board.h"
+#include "../../include/card.h"
+#include "../../include/interface.h"
 
 #define N_MIN 3
 #define N_MAX 60
