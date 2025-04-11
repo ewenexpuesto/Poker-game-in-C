@@ -14,7 +14,7 @@ int main()
 {
     printf("ca commence");
     FILE *fd = fopen("resultats1.csv", "w");
-    
+
     if (!fd)
     {
         perror("Erreur ouverture fichier resultats.csv");
@@ -25,11 +25,11 @@ int main()
     for (int i = 0; i < 60; i++)
     {
         srand(time(NULL));
-        /*la partie se joue en n tours avec n compris entre 3 et 20*/
-        int n = (rand() % 18) + 3;
+        /*la partie se joue en n tours avec n compris entre 3 et 5*/
+        int nombre = rand() % 3 + 3;
         printf("n :%d", n);
         clock_t debut = clock();
-        int* scores = probabiliste(n); /*on lance une partie avec la fonction probabiliste*/
+        int *scores = probabiliste(n); /*on lance une partie avec la fonction probabiliste*/
         printf("scores : %d, %d", scores[0], scores[1]);
         clock_t fin = clock();
         double temps_ms = ((double)(fin - debut)) * 1000.0 / CLOCKS_PER_SEC;
