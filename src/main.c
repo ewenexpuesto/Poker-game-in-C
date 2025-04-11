@@ -1,5 +1,7 @@
 #include <stdio.h>              
 #include <stdlib.h>
+#include <time.h>
+#include <stdint.h> 
 #include "../include/board.h"
 #include "../include/card.h"
 #include "../include/player.h"
@@ -28,7 +30,7 @@ int main() {
             player p = create_player();
             add_player_to_team(b, i, p);
 
-            /* Distribution des cartes */
+            /* Création des cartes */
 
             for (int k = 0; k < 5; k++) {
                 card c = create_card();
@@ -39,13 +41,32 @@ int main() {
         }
     }
 
+     /* Distribution des cartes */
+     int index[NB_CARDS];
+
+     srand(time(NULL) ^ (intptr_t)NB_CARDS); // Graine plus aléatoire
+
+     
+    for (int i = 0; i < NB_CARDS; i++) {
+        index[i] = i;
+    }
+
+    for (int i = NB_CARDS - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        int temp = index[i];
+        index[i] = index[j];
+        index[j] = temp;
+    }
+
+    count = 0;
+
     for (int i = 0; i < NB_TEAMS; i++) {
         for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
             for (int k = 0; k < 5; k++) {
-                int random_index = rand() % (NB_CARDS - k);
-                player p = get_player(b, i, j);
-                card c = card_tot[random_index];
+                player p = get_player(b, i, j); 
+                card c = card_tot[index[count]];
                 add_card_to_hand(p, c);
+                count++;
             }
         }
     }
