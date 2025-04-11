@@ -1,10 +1,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("resultats.csv")
+df = pd.read_csv("resultats1.csv")
 
 # Courbe des victoires
-victoires_par_n = df.groupby("n_tours")["victoire"].mean()
+victoires_par_n = df.groupby("n_tours")["victoires"].mean()
 plt.plot(victoires_par_n.index, victoires_par_n.values, marker='o')
 plt.title("Taux de victoire selon le nombre de tours")
 plt.xlabel("Nombre de tours")

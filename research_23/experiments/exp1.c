@@ -12,7 +12,7 @@
 
 int main()
 {
-    printf("ca commence");
+    printf("ca commence\n");
     FILE *fd = fopen("resultats1.csv", "w");
     
     if (!fd)
@@ -20,22 +20,42 @@ int main()
         perror("Erreur ouverture fichier resultats.csv");
         return 1;
     }
-    fprintf(fd, "ième partie, n_tours,partie,temps_ms,scores[0], scores[1], victoires\n");
-    /*on crée 20 parties */
+    
+    // Initialiser le générateur de nombres aléatoires une seule fois
+    srand(time(NULL));
+    
+    fprintf(fd, "ième partie,n_tours,temps_ms,scores[0],scores[1],victoires\n");
+    
+    /*on crée 60 parties */
     for (int i = 0; i < 60; i++)
     {
-        srand(time(NULL));
         /*la partie se joue en n tours avec n compris entre 3 et 20*/
-        int n = (rand() % 18) + 3;
-        printf("n :%d", n);
+        int n = (rand() % 3) + 3;
+        printf("n :%d\n", n);
+        
         clock_t debut = clock();
+        printf("debut de la partie %d\n", i + 1);
         int* scores = probabiliste(n); /*on lance une partie avec la fonction probabiliste*/
-        printf("scores : %d, %d", scores[0], scores[1]);
+        printf("fin de la partie %d\n", i + 1);
         clock_t fin = clock();
+        
+        if (scores == NULL) {
+            fprintf(stderr, "Erreur: probabiliste a retourné NULL\n");
+            continue;
+        }
+        
+        printf("scores : %d, %d\n", scores[0], scores[1]);
         double temps_ms = ((double)(fin - debut)) * 1000.0 / CLOCKS_PER_SEC;
-        int victoires = scores[1];
-        fprintf(fd, "%d,%d,%.2f,%d, %d, %d\n", i + 1, n, temps_ms, scores[0], scores[1], victoires);
+        
+        // Déterminer le vainqueur
+        int victoires = (scores[1] > scores[0]) ? 1 : (scores[0] > scores[1]) ? 0 : -1;
+        
+        fprintf(fd, "%d,%d,%.2f,%d,%d,%d\n", i + 1, n, temps_ms, scores[0], scores[1], victoires);
+        
+        // Libérer la mémoire allouée par probabiliste
+        free(scores);
     }
+    
     fclose(fd);
     return 0;
 }
