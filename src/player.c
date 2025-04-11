@@ -144,6 +144,8 @@ void remove_card_from_hand(player p, card c)
         if (get_card_id(p->cards_in_hand[i]) == id_card)
         {
             //free(p->cards_in_hand[i]);
+            printf("CH %d\n", get_value(p->cards_in_hand[i]));
+            printf("C %d \n", get_value(c));
             j = i;          
             break;
         }
