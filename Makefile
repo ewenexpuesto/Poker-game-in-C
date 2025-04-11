@@ -23,7 +23,7 @@ INCDIR = include
 $(OBJDIR)/%.o: $(SRCDIR)/%.c # <==> %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# added the following for probabiliste.c
+# added the following for probabiliste.c and exp1.c
 $(OBJDIR)/probabiliste.o: research_23/experiments/probabiliste.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
