@@ -27,7 +27,7 @@ int main()
     {
         /*la partie se joue en n tours avec n compris entre 3 et 20*/
         srand(time(NULL) + i); // Different seed for each iteration
-        int n = (rand() % 6);
+        int n = (rand() % 50); // Changer le nombre de tours ici ------------------------------------------
         printf("Valeur de n : %d\n", n);
         
         clock_t debut = clock();
