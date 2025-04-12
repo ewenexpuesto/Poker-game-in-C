@@ -54,22 +54,32 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
             }
         }
     }
+     /* Distribution des cartes */
+     int index[NB_CARDS];
 
-    // Création d'une copie du tableau pour suivre les cartes distribuées
-    int cards_used[20] = {0}; // 0 si la carte n'est pas utilisée, 1 sinon
+     srand(time(NULL) ^ (intptr_t)NB_CARDS); // Graine plus aléatoire
+
+     
+    for (int i = 0; i < NB_CARDS; i++) {
+        index[i] = i;
+    }
+
+    for (int i = NB_CARDS - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        int temp = index[i];
+        index[i] = index[j];
+        index[j] = temp;
+    }
+
+    count = 0;
 
     for (int i = 0; i < NB_TEAMS; i++) {
         for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
-            player p = get_player(b, i, j);
             for (int k = 0; k < 5; k++) {
-                // Trouver une carte non distribuée
-                int random_index;
-                do {
-                    random_index = rand() % 20;
-                } while (cards_used[random_index]);
-                
-                cards_used[random_index] = 1;
-                add_card_to_hand(p, card_tot[random_index]);
+                player p = get_player(b, i, j); 
+                card c = card_tot[index[count]];
+                add_card_to_hand(p, c);
+                count++;
             }
         }
     }
@@ -305,6 +315,23 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
                 winning_team = i;
             }
         }
+        // Regarde s'il y a égalité en toutes les équipes
+        int draw = 1; // Suppose égalité au départ
+
+        for (int i = 0; i < NB_TEAMS; i++) {
+            for (int j = i + 1; j < NB_TEAMS; j++) { // j = i + 1 pour éviter i == j
+                if (team_scores[i] != team_scores[j]) {
+                    draw = 0; // Pas d'égalité
+                    break;
+                }
+            }
+            if (!draw) break; // Sortir aussi de la boucle extérieure
+        }
+        
+        if (draw) {
+            winning_team = -1;
+            display_message("Il y a égalité pour ce round");
+        }
             
         /* Attribution des points */
     
@@ -314,12 +341,15 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
                 int gamble = get_slate(p);
                 if (winning_team == i && gamble == 1) {
                     set_score_of_team(b, i, get_score_of_team(b, i) + 1);
-                } else if (winning_team != i && gamble == 0) {
+                } 
+                else if (winning_team != i && gamble == 0) {
                     set_score_of_team(b, i, get_score_of_team(b, i) + 1);
                 }
+                else if (winning_team == -1) {
+                    set_score_of_team(b, i, get_score_of_team(b, i) + 1);
+                } // si égalité, toute le monde gagne
             }
         }
-    }
         
     /* Fin du jeu */
     
