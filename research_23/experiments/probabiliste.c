@@ -4,6 +4,8 @@
 #include "../../include/board.h"
 #include "../../include/card.h"
 #include "../../include/player.h"
+#include <time.h>
+#include <stdint.h> 
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -330,7 +332,6 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
         
         if (draw) {
             winning_team = -1;
-            display_message("Il y a égalité pour ce round");
         }
             
         /* Attribution des points */
@@ -350,6 +351,7 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
                 } // si égalité, toute le monde gagne
             }
         }
+    }
         
     /* Fin du jeu */
     
