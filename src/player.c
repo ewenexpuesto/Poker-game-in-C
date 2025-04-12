@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "../include/player.h"
 #include "../include/card.h"
+#include "../include/board.h" // for NB_CARDS
  
 struct player_s
 {
@@ -25,18 +26,16 @@ int creation_id_bis(int reset)       /*creer un identifiant id unique qui commen
 
 }
  
-player player_tab[4];       /*on créer un tableau de joueuses*/
+player player_tab[NB_PLAYERS_TEAM*NB_TEAMS];       /*on créer un tableau de joueuses*/
 
 void reset_player_id_counter() {
-    // This assumes your creation_id_bis() function uses a static counter
-    // You'll need to expose this counter or provide a reset method
     extern int creation_id_bis(int reset);
     creation_id_bis(1);  // Pass 1 to reset
 }
 
 void reset_global_array1() {
     // Reset player_tab
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < NB_PLAYERS_TEAM*NB_TEAMS; i++) {
         player_tab[i] = NULL;
     }
 }
@@ -56,9 +55,9 @@ player create_player()
         perror("Erreur durant l'allocation");       
         exit(1);
     }
-    p->cards_in_hand = malloc(5 * sizeof(card));        
+    p->cards_in_hand = malloc((NB_CARDS/(NB_PLAYERS_TEAM*NB_TEAMS)) * sizeof(card));        
     p->hand = 0;
-    p->cards_on_table = malloc (5 * sizeof(card));
+    p->cards_on_table = malloc ((NB_CARDS/(NB_PLAYERS_TEAM*NB_TEAMS)) * sizeof(card));
     p->table = 0;
     p->ardoise = -1; /*-1 signifie que la joueuse n'a pas encore parié*/
     p->id = creation_id_bis(0);
@@ -98,7 +97,7 @@ int get_player_id(player p)
  */
 player get_player_by_id(int n)
 {
-    if (n >= 0 && n < 4) /*il ny a que 4 joueurs donc les identifiants sont compris entre 0 et 4*/
+    if (n >= 0 && n < NB_PLAYERS_TEAM*NB_TEAMS) /*il n'y a que NB_PLAYERS_TEAM*NB_TEAMS joueurs donc les identifiants sont compris entre 0 et NB_PLAYERS_TEAM*NB_TEAMS*/
     {
         return player_tab[n];
     }

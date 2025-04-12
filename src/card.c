@@ -22,7 +22,6 @@ int creation_id_card(int reset)
 }
 
 void reset_card_id_counter() {
-    // Similar to above
     extern int creation_id_card(int reset);
     creation_id_card(1);  // Pass 1 to reset
 }

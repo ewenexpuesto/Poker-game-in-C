@@ -218,7 +218,7 @@ int ask_gamble(player p){
 */
 int ask_number_of_played_cards(player p){
     printf("Joueuse %d, combien de cartes souhaitez-vous poser ? ", get_player_id(p));
-    int reponse = -1; // pour stocker la réponse; 1 chiffre car les joueuses ont 5 cartes max dans les mains
+    int reponse = -1; // pour stocker la réponse; 1 chiffre car les joueuses ont NB_PLAYERS_TEAM*NB_TEAMS cartes max dans les mains
     scanf("%d", &reponse);
     while (reponse < 0 || reponse > get_size_of_hand(p)) // utilisation de scanf pour lire la réponse
 

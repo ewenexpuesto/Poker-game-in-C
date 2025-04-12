@@ -9,9 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NB_TEAMS 2
-#define NB_PLAYERS_TEAM 2
-
 // HERE is where the main is modified
 
 int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_probabiliste_method, int NB_ROUNDS) {
@@ -128,7 +125,7 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
                     player p = get_player(b, i, j);
                     // HERE
                     // calcule la moyenne de de la valeurs des autres joueurs moins les cartes déjà jouées (c'est une même moyenne)
-                    int total_value_of_all_cards = 4*5+4*4+4*3+4*2+4*1;
+                    int total_value_of_all_cards = NB_PLAYERS_TEAM*NB_TEAMS*5+NB_PLAYERS_TEAM*NB_TEAMS*4+NB_PLAYERS_TEAM*NB_TEAMS*3+NB_PLAYERS_TEAM*NB_TEAMS*2+NB_PLAYERS_TEAM*NB_TEAMS*1;
                     int total_value_of_played_cards = 0;
                     for (int k = 0; k < NB_TEAMS; k++) {
                         for (int l = 0; l < NB_PLAYERS_TEAM; l++) {

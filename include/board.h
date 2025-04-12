@@ -5,6 +5,8 @@
 #include "player.h"
 
 #define NB_CARDS 20
+#define NB_TEAMS 2
+#define NB_PLAYERS_TEAM 2
 
 struct team {
     int team_id;
