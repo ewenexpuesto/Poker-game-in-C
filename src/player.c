@@ -62,7 +62,7 @@ player create_player()
     p->table = 0;
     p->ardoise = -1; /*-1 signifie que la joueuse n'a pas encore parié*/
     p->id = creation_id_bis(0);
-    printf("ID de la joueuse : %d\n", p->id);
+    //printf("ID de la joueuse : %d\n", p->id);
     player_tab[p->id] = p;      /*l'identifiant de la joueuse est sa place dans le tableau des joueuses*/
     return p;
 };

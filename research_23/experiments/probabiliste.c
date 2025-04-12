@@ -12,8 +12,6 @@
 #define NB_TEAMS 2
 #define NB_PLAYERS_TEAM 2
 
-// MODIFIER RANDOM ET VARIABLES GLOBALES
-
 // HERE is where the main is modified
 
 int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_probabiliste_method, int NB_ROUNDS) {
@@ -34,7 +32,7 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
     /* Ajout des équipes et des joueuses */
     int count = 0;
     
-    card* card_tot = malloc(20 * sizeof(card));
+    card* card_tot = malloc(NB_CARDS * sizeof(card));
     if (card_tot == NULL) {
         printf("Error: memory allocation failed for card_tot\n");
         free_board(b);
@@ -377,7 +375,7 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
     }
     
     // Before freeing card_tot
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < NB_CARDS; i++) {
         free_card(card_tot[i]);
     }
     free(card_tot);
@@ -394,11 +392,11 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
     return scores;
 }
 
-int * probabiliste(/*int * distrib, int nb_teams, int nb_card_each_turn*/ int n) {
+int * probabiliste(/*int * distrib, int nb_teams, int nb_card_each_turn*/ int number_of_rounds) {
     // One team must play one method and the other team must use the other method
     int team_id_agressive_method = 0;
     int team_id_probabiliste_method = 1;
-    int *result = agressive_probabiliste_method(team_id_agressive_method, team_id_probabiliste_method, n);
+    int *result = agressive_probabiliste_method(team_id_agressive_method, team_id_probabiliste_method, number_of_rounds);
     
     // Reset global state after each call
     reset_player_id_counter();

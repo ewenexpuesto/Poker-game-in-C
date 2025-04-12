@@ -7,17 +7,13 @@
 #include "../../include/card.h"
 #include "../../include/interface.h"
 
-#define N_MIN 3
-#define N_MAX 60
-
 int main()
 {
-    printf("ca commence\n");
     FILE *fd = fopen("resultats1.csv", "w");
 
     if (!fd)
     {
-        perror("Erreur ouverture fichier resultats.csv");
+        perror("Erreur ouverture fichier resultats1.csv");
         return 1;
     }
     
@@ -30,13 +26,14 @@ int main()
     for (int i = 0; i < 60; i++)
     {
         /*la partie se joue en n tours avec n compris entre 3 et 20*/
-        int n = (rand() % 3) + 3;
-        printf("n :%d\n", n);
+        srand(time(NULL) + i); // Different seed for each iteration
+        int n = (rand() % 6);
+        printf("Valeur de n : %d\n", n);
         
         clock_t debut = clock();
-        printf("debut de la partie %d\n", i + 1);
+        printf("Début de la partie n°%d ... ", i + 1);
         int* scores = probabiliste(n); /*on lance une partie avec la fonction probabiliste*/
-        printf("fin de la partie %d\n", i + 1);
+        printf("fin de la partie n°%d\n", i + 1);
         clock_t fin = clock();
         
         if (scores == NULL) {
@@ -44,7 +41,7 @@ int main()
             continue;
         }
         
-        printf("scores : %d, %d\n", scores[0], scores[1]);
+        printf("Scores (agressive, probabiliste) : %d, %d\n", scores[0], scores[1]);
         double temps_ms = ((double)(fin - debut)) * 1000.0 / CLOCKS_PER_SEC;
         
         // Déterminer le vainqueur
@@ -54,6 +51,7 @@ int main()
         
         // Libérer la mémoire allouée par probabiliste
         free(scores);
+        printf("\n");
     }
     
     fclose(fd);

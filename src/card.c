@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/card.h"
+#include "../include/board.h" // for NB_CARDS
 
 struct card_s
 {
@@ -8,7 +9,7 @@ struct card_s
     int value;
 };
 
-card card_tab[20];
+card card_tab[NB_CARDS];
 
 int creation_id_card(int reset)
 {
@@ -28,7 +29,7 @@ void reset_card_id_counter() {
 
 void reset_global_array2() {
     // Reset card_tab
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < NB_CARDS; i++) {
         card_tab[i] = NULL;
     }
 }
@@ -47,7 +48,7 @@ card create_card()
         exit(1);
     }
     c->id_card = creation_id_card(0);
-    printf("ID de la carte : %d\n", c->id_card);
+    //printf("ID de la carte : %d\n", c->id_card);
     card_tab[c->id_card] = c;
     c->value = 0;
     return c;
@@ -83,7 +84,7 @@ int get_card_id(card c)
 */
 card get_card_by_id(int n)
 {
-    if (n >= 0 && n < 20)       /*il n'y a que 20 cartes donc les identifiants sont compris entre 0 et 19*/
+    if (n >= 0 && n < NB_CARDS)       /*il n'y a que NB_CARDS cartes donc les identifiants sont compris entre 0 et NB_CARDS-1*/
     {
         return card_tab[n];
     }
