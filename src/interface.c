@@ -44,10 +44,10 @@
     }
     if (get_slate(player1_1) != -1) { // le -1 pour éviter d'afficher au début
         if (get_slate(player1_1)==0) {
-            printf("\nSon pari est défaite");
+            printf("\nSon pari était défaite");
         } 
         else if (get_slate(player1_1)==1) {
-            printf("\nSon pari est victoire");
+            printf("\nSon pari était victoire");
         }
     }
     printf("\n");
@@ -77,10 +77,10 @@
     }
     if (get_slate(player1_2) != -1) { // le -1 pour éviter d'afficher au début
         if (get_slate(player1_2)==0) {
-            printf("\nSon pari est défaite");
+            printf("\nSon pari était défaite");
         } 
         else if (get_slate(player1_2)==1) {
-            printf("\nSon pari est victoire");
+            printf("\nSon pari était victoire");
         }
     }
     printf("\n");
@@ -119,10 +119,10 @@
     }
     if (get_slate(player2_1) != -1) { // le -1 pour éviter d'afficher au début
         if (get_slate(player2_1)==0) {
-            printf("\nSon pari est défaite");
+            printf("\nSon pari était défaite");
         } 
         else if (get_slate(player2_1)==1) {
-            printf("\nSon pari est victoire");
+            printf("\nSon pari était victoire");
         }
     }
     printf("\n");
@@ -155,10 +155,10 @@
     }
     if (get_slate(player2_2) != -1) { // le -1 pour éviter d'afficher au début
         if (get_slate(player2_2)==0) {
-            printf("\nSon pari est défaite");
+            printf("\nSon pari était défaite");
         } 
         else if (get_slate(player2_2)==1) {
-            printf("\nSon pari est victoire");
+            printf("\nSon pari était victoire");
         }
     }
     printf("\n");
@@ -191,12 +191,12 @@ int ask_gamble(player p){
  
     while (strstr(reponse, "v") == NULL && strstr(reponse, "d") == NULL) // tant que la réponse ne contient pas "Victoire" ou "Defaite"
     {
-        printf("Réponse invalide ");
         if (fgets(reponse, sizeof(reponse), stdin) == NULL) // utilisation de fgets pour lire un a un les caractères de la réponse
         {
             fprintf(stderr, "Erreur dans la lecture de la réponse\n");
             exit(1);
-        } 
+        }
+        //printf("Réponse invalide, réessayez : "); // enlevé car cause une gêne
     }
 
     if(strstr(reponse, "v") != NULL) // si la réponse contient "Victoire"
@@ -275,15 +275,15 @@ void display_end_game(board b)
     team team2= b->team2;
     if(get_score_of_team(b,team1.team_id)>get_score_of_team(b,team2.team_id)) // cas ou le score de l'équipe 1 est supérieur
     {
-        printf("l'équipe victorieuse est l'équie 1 ");
+        printf("L'équipe victorieuse est l'équie 1\n");
     }
     if(get_score_of_team(b,team1.team_id)<get_score_of_team(b,team2.team_id)) // cas ou le score de l'équipe 2 est supérieur
     {
-        printf("l'équipe victorieuse est l'équie 2 ");
+        printf("L'équipe victorieuse est l'équie 2\n");
     }
     else // cas d'égalité
     {
-        printf("Egalité entre les équipes");
+        printf("Egalité entre les équipes\n");
     }
 }
  
