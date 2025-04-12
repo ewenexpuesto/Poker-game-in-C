@@ -43,9 +43,9 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
             add_player_to_team(b, i, p);
 
             /* Distribution des cartes */
-            for (int k = 0; k < 5; k++) {
+            for (int k = 0; k < (NB_CARDS/(NB_TEAMS*NB_PLAYERS_TEAM)); k++) { // CHANGE THAT IN LOT B FOR GENERALIZATION-----------------------------------------------------------------------
                 card c = create_card();
-                set_value(c, (k + 1)); 
+                set_value(c, (k + 1)%6); // %6 PERMET DE FIXER LA VALUE MAX -------------------------------------- 
                 card_tot[count] = c;
                 count++;
             }
@@ -72,7 +72,7 @@ int * agressive_probabiliste_method(int team_id_agressive_method, int team_id_pr
 
     for (int i = 0; i < NB_TEAMS; i++) {
         for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
-            for (int k = 0; k < 5; k++) {
+            for (int k = 0; k < (NB_CARDS/(NB_TEAMS*NB_PLAYERS_TEAM)); k++) { // CHANGE THAT IN LOT B FOR GENERALIZATION ---------------------------------------------------------------------------
                 player p = get_player(b, i, j); 
                 card c = card_tot[index[count]];
                 add_card_to_hand(p, c);
