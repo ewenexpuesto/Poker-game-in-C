@@ -47,7 +47,7 @@ card create_card()
         exit(1);
     }
     c->id_card = creation_id_card(0);
-    printf("ID de la carte : %d\n", c->id_card);
+    //printf("ID de la carte : %d\n", c->id_card);
     card_tab[c->id_card] = c;
     c->value = 0;
     return c;
