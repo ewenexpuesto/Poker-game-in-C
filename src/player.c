@@ -156,7 +156,7 @@ void remove_card_from_hand(player p, card c)
             //free(p->cards_in_hand[i]);
             //printf("CH %d\n", get_value(p->cards_in_hand[i]));
             //printf("C %d \n", get_value(c));
-            j = i + 1; // IL FALLAIT CORRIGER CELA
+            j = i; // IL FALLAIT CORRIGER CELA
             break;
         }
     }
@@ -222,7 +222,7 @@ void remove_played_card(player p, card c)
     {
         if (get_card_id(p->cards_on_table[i]) == id_card)
         {
-            j = i + 1; // IL FALLAIT CORRIGER CELA ICI AUSSI
+            j = i; // IL FALLAIT CORRIGER CELA ICI AUSSI
             break;
         }
     }
