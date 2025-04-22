@@ -19,6 +19,7 @@
 \param p : player p défini dans player.h et player.c
 \return : entier i encodant le pari
 */
+
 int ask_gamble(player p);
 
 
@@ -50,6 +51,6 @@ void display_end_game(board b);
 \param c : char* c message à renvoyer
 \return : rien
 */
-void display_message(char* c)
+void display_message(char* c);
 
 #endif

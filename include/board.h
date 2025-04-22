@@ -1,10 +1,36 @@
+#ifndef BOARD_H
+#define BOARD_H
+
 #include "card.h"
 #include "player.h"
+
+#define NB_CARDS 20 // DOIT ETRE MULTIPLE DE NB_PLAYERS_TEAM*NB_TEAMS
+#define NB_TEAMS 2
+#define NB_PLAYERS_TEAM 2
+
+struct team {
+    int team_id;
+    player player1;
+    player player2;
+    int score;
+};
+
+/**
+ * \brief Une variable de type team permettra d'accéder à toutes les informations relatives à une équipe
+ */
+typedef struct team team;
+
+struct board {
+    team team1;
+    team team2;
+    card out_of_game_cards[NB_CARDS];
+};
 
 /**
  * \brief Une variable de type board permettra d'accéder à toutes les informations relatives au plateau de jeu
  */
-typedef void * board;
+typedef struct board * board;
+
 
 /**
  * \brief Cette fonction devra allouer la mémoire nécessaire pour créer un nouveau plateau
@@ -55,7 +81,7 @@ int get_number_of_players_in_team(board b, int team_id);
  * \brief Cette fonction devra renvoyer la joueuse de l'équipe dont l'id est team_id et dont l'indice dans l'équipe est player_index
  * \param b de type board
  * \param team_id un entier identifiant l'équipe
- * \param player_index un entier représentant l'index de la joueuse dans l'équipe
+ * \param player_index un entier représentant l'index de la joueuse dans l'équipe, 0 pour la première et 1 pour la deuxième
  * \return une joueuse
  */
 player get_player(board b, int team_id, int player_index);
@@ -107,3 +133,6 @@ card get_out_of_game_card(board b, int card_index);
  * \return void
  */
 void remove_out_of_game_card(board b, card c);
+
+
+#endif /* BOARD_H */

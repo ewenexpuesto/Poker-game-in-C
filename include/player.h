@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "card.h"
 
 #ifndef _PLAYER_
 #define _PLAYER_
@@ -7,7 +8,11 @@
 /** 
  * \brief Créer un type abstrait player
  */
-typedef void *player;
+typedef struct player_s *player;
+
+void reset_player_id_counter();
+
+void reset_global_array1();
 
 /**
  *  \brief Renvoie un player sans carte en main initialement sans carte en main, sans carte posée sur la table et avec une ardoise vide 
@@ -105,7 +110,7 @@ int get_player_id (player p);
  * \return une carte
  */
 
- card get_played_card(player p, card card_index);
+ card get_played_card(player p, int card_index);
 
 
 /**
@@ -133,4 +138,5 @@ int get_player_id (player p);
  */
 
  void set_slate(player p, int n);
+ 
 #endif
