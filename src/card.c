@@ -7,6 +7,7 @@ struct card_s
 {
     int id_card;
     int value;
+    char colour; // r : rouge n : noir m : multicolore
 };
 
 card card_tab[NB_CARDS];
@@ -50,6 +51,7 @@ card create_card()
     //printf("ID de la carte : %d\n", c->id_card);
     card_tab[c->id_card] = c;
     c->value = 0;
+    c->colour = 'a'; // 'a' pour aucune couleur
     return c;
 }
 
@@ -101,6 +103,16 @@ int get_value(card c)
     return c->value;
 }
 
+/**
+\brief : renvoye la couleur de la carte
+\param : card c
+\return: couleur de la carte
+*/
+int get_card_colour(card c)
+{
+    return c->colour;
+}
+
 
 /**
 \brief : remplace la valeur inscrite sur la carte par la valeur donnée en entrée
@@ -116,5 +128,22 @@ void set_value(card c, int n)
     else
     {
         printf("n doit être entre 0 et 5");
+    }
+}
+
+/**
+\brief : remplace la couleur de la carte par la valeur donnée en entrée
+\param : card c et char colour
+\return : rien
+*/
+void set_colour(card c, char colour)
+{
+    if (colour == 'n' || colour == 'r')
+    {
+        c->colour = colour;
+    }
+    else
+    {
+        printf("couleur invalide");
     }
 }

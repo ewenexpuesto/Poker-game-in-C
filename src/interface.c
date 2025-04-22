@@ -27,7 +27,7 @@
     for(int i=0; i<get_size_of_hand(player1_1); i++)
     {
         card c1 = get_card_in_hand(player1_1, i); // Il faut récupérer l'id de la carte
-        printf("%d",get_value(c1));
+        printf("%d %c",get_value(c1), get_card_colour(c1));
  
         if(i < get_size_of_hand(player1_1)-1){
             printf(", ");
@@ -39,7 +39,7 @@
     for(int k=0; k<get_number_of_played_cards(player1_1);k++)
     {
         card c2 = get_played_card(player1_1, k);
-        printf("%d, ",get_value(c2)) ;
+        printf("%d %c, ",get_value(c2), get_card_colour(c2));
  
     }
     if (get_slate(player1_1) != -1) { // le -1 pour éviter d'afficher au début
@@ -61,7 +61,7 @@
     for(int i=0; i<get_size_of_hand(player1_2); i++)
     {
         card c1 = get_card_in_hand (player1_2, i);
-        printf("%d",get_value(c1));
+        printf("%d %c",get_value(c1), get_card_colour(c1));
  
         if(i < get_size_of_hand(player1_2)-1){
             printf(", ");
@@ -72,7 +72,7 @@
     for(int k=0; k<get_number_of_played_cards(player1_2);k++)
     {
         card c2 = get_played_card(player1_2, k);
-        printf("%d, ",get_value(c2));
+        printf("%d %c, ",get_value(c2), get_card_colour(c2));
  
     }
     if (get_slate(player1_2) != -1) { // le -1 pour éviter d'afficher au début
@@ -102,7 +102,7 @@
     for(int i=0; i<get_size_of_hand(player2_1); i++)
     {
         card c1 = get_card_in_hand (player2_1, i);
-        printf("%d",get_value(c1));
+        printf("%d %c",get_value(c1), get_card_colour(c1));
  
         if(i < get_size_of_hand(player2_1)-1){
             printf(", ");
@@ -114,7 +114,7 @@
     for(int k=0; k<get_number_of_played_cards(player2_1);k++)
     {
         card c2 = get_played_card(player2_1, k);
-        printf("%d, ",get_value(c2));
+        printf("%d %c, ",get_value(c2), get_card_colour(c2));
  
     }
     if (get_slate(player2_1) != -1) { // le -1 pour éviter d'afficher au début
@@ -138,7 +138,7 @@
     {
         // Il faut récupérer l'id de la carte
         card c1 = get_card_in_hand (player2_2, i);
-        printf("%d",get_value(c1));
+        printf("%d %c",get_value(c1), get_card_colour(c1));
  
         if(i < get_size_of_hand(player2_2)-1){
             printf(", ");
@@ -150,7 +150,7 @@
     for(int k=0; k<get_number_of_played_cards(player2_2);k++)
     {
         card c2 = get_played_card(player2_2, k);
-        printf("%d, ",get_value(c2));
+        printf("%d %c, ",get_value(c2), get_card_colour(c2));
  
     }
     if (get_slate(player2_2) != -1) { // le -1 pour éviter d'afficher au début
@@ -170,7 +170,7 @@
     for(int j=0; j<get_number_of_out_of_game_cards(b); j++)
     {
         card c3 = get_out_of_game_card(b, j);
-        printf("%d, ",get_value(c3));
+        printf("%d %c, ",get_value(c3), get_card_colour(c3));
     }
  }
 
@@ -223,7 +223,7 @@ int ask_number_of_played_cards(player p){
     while (reponse < 0 || reponse > get_size_of_hand(p)) // utilisation de scanf pour lire la réponse
 
     {
-        printf("Joueuse %d, veuillez entrer un nombre entre 1 et %d", get_player_id(p), get_size_of_hand(p)); // on demande à la joueuse de choisir une carte
+        printf("Joueuse %d, veuillez entrer un nombre entre 1 et %d", get_player_id(p), get_size_of_hand(p));
         scanf("%d",&reponse); // utilisation de scanf pour lire la réponse
     }
     
@@ -260,6 +260,22 @@ card ask_card(player p){
     //used_indices[reponse] = 1;
 
     return get_card_in_hand(p, reponse); // on récupère la carte à l'indice donné par la joueuse
+}
+
+/** 
+\brief : demande à la joueuse une couleur qu'elle souhaite jouer et renvoit cette couleur
+\return : char couleur que la joueuse souhaite jouer
+*/
+char ask_colour() {
+    char reponse = 'a';
+    printf("Entrez la couleur que vous voulez jouer ('r' pour rouge, 'n' pour noir ou 'm' pour multicolore)" );
+    scanf(" %c", &reponse); // utilisation de scanf pour lire la réponse
+    while (reponse != 'r' && reponse != 'n' && reponse != 'm') // tant que la réponse n'est pas valide
+    {
+        printf("Réponse invalide. Veuillez entrer 'r', 'n' ou 'm' : ");
+        scanf(" %c", &reponse); // utilisation de scanf pour lire la réponse
+    }
+    return reponse;
 }
  
  

@@ -130,6 +130,8 @@ int get_player_id (player p);
 
  int get_slate(player p);
 
+ char get_slate_colour(player p);
+
  
 /**
  * \brief Remplace le pari de la joueuse par le pari codé avec l'entier donné en entrée
@@ -138,5 +140,7 @@ int get_player_id (player p);
  */
 
  void set_slate(player p, int n);
+
+ void set_slate_colour(player p, char c);
  
 #endif

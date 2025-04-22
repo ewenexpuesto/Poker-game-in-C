@@ -50,10 +50,24 @@ card get_card_by_id(int id);
 int get_value(card c);
 
 /**
+\brief : renvoye la couleur de la carte
+\param : card c
+\return: couleur de la carte
+*/
+int get_card_colour(card c);
+
+/**
 \brief : remplace la valeur inscrite sur la carte par la valeur donnée en entrée
 \param : card c et int n
 \return : rien
 */
 void set_value(card c, int n);
+
+/**
+\brief : remplace la couleur de la carte par la valeur donnée en entrée
+\param : card c et char colour
+\return : rien
+*/
+void set_colour(card c, char colour);
 
 #endif

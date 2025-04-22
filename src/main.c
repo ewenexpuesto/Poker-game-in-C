@@ -38,6 +38,15 @@ int main() {
             for (int k = 0; k < 5; k++) {
                 card c = create_card();
                 set_value(c, (k + 1)); 
+                if (i == 0) {
+                    set_colour(c, 'r');
+                }
+                else if (i == 1) {
+                    set_colour(c, 'n');
+                }
+                else {
+                    printf("Erreur : couleur de carte non définie\n");
+                }
                 card_tot[count] = c;
                 count++;
             }
@@ -81,12 +90,14 @@ int main() {
         
         /* Phase de pari */
 
-        display_message("\nLe pari à noter est \"v\" pour victoire ou \"d\" pour Défaite\n\n");
+        display_message("\n\nLe pari de valeur à noter est \"v\" pour victoire ou \"d\" pour Défaite. \nLe pari de couleur à noter est \"r\" pour rouge, \"n\" pour noir ou \"m\" pour multicolore\n\n");
 
         for (int i = 0; i < NB_TEAMS; i++) {
             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
                 player p = get_player(b, i, j);
                 int gamble = ask_gamble(p);
+                char colour = ask_colour();
+                set_slate_colour(p, colour);
                 set_slate(p, gamble);
             }
         }
@@ -110,7 +121,15 @@ int main() {
                     play_card(p, c);
                     add_out_of_game_card(b,c);
                     remove_card_from_hand(p,c);
-                    team_scores[i] += get_value(c);
+                    if (get_card_colour(c) == get_slate_colour(p)) {
+                        team_scores[i] += get_value(c);
+                    }
+                    else if (get_slate_colour(p) == 'm') {
+                        team_scores[i] += get_value(c);
+                    }
+                    else {
+                        team_scores[i] += 0;
+                    }
                     //printf("%d\n", team_scores[i]);
                 }
 
@@ -127,10 +146,25 @@ int main() {
                     play_card(p, c1);
                     play_card(p, c2);
 
-
-                    team_scores[i] += get_value(c1);
+                    if (get_card_colour(c1) == get_slate_colour(p)) {
+                        team_scores[i] += get_value(c1);
+                    }
+                    else if (get_slate_colour(p) == 'm') {
+                        team_scores[i] += get_value(c1);
+                    }
+                    else {
+                        team_scores[i] += 0;
+                    }
                     //printf("%d\n", team_scores[i]);
-                    team_scores[i] += get_value(c2);
+                    if (get_card_colour(c2) == get_slate_colour(p)) {
+                        team_scores[i] += get_value(c2);
+                    }
+                    else if (get_slate_colour(p) == 'm') {
+                        team_scores[i] += get_value(c2);
+                    }
+                    else {
+                        team_scores[i] += 0;
+                    }
                     //printf("%d\n", team_scores[i]);
 
                     ///add_out_of_game_card(b,c1);

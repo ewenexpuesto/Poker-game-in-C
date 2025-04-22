@@ -11,6 +11,7 @@ struct player_s
     card *cards_on_table;       /*les cartes sur la table*/
     int table;                  /*le nombre de cartes sur la table*/
     int ardoise; /*1 =la joueuse a parié victoire et 0=la joueuse a parié défaite */
+    char ardoise_colour;        /*la couleur de la carte posée sur la table*/
     int id;                     /*l'identifiant de la joueuse*/
     int team_id;                /*l'identifiant de son équipe*/
 };
@@ -60,6 +61,7 @@ player create_player()
     p->cards_on_table = malloc ((NB_CARDS/(NB_PLAYERS_TEAM*NB_TEAMS)) * sizeof(card));
     p->table = 0;
     p->ardoise = -1; /*-1 signifie que la joueuse n'a pas encore parié*/
+    p->ardoise_colour = 'a'; /*'a' pour aucune couleur*/
     p->id = creation_id_bis(0);
     //printf("ID de la joueuse : %d\n", p->id);
     player_tab[p->id] = p;      /*l'identifiant de la joueuse est sa place dans le tableau des joueuses*/
@@ -245,6 +247,16 @@ int get_slate(player p)
 {
     return p->ardoise;
 }
+
+/**
+ * \brief Renvoie la couleur de la carte posée sur la table par la joueuse
+ * \param p player
+ * \return un char
+ */
+char get_slate_colour(player p)
+{
+    return p->ardoise_colour;
+}
  
  
 /**
@@ -262,4 +274,18 @@ void set_slate(player p, int n)
     {
         printf("n doit être entre 0 et 1");
     }
+}
+
+/**
+ * \brief Remplace le pari de la joueuse par la valeur donnée en entrée
+ * \param p player, c char
+ * @return La fonction ne renvoie rien
+ */
+void set_slate_colour(player p, char c)
+{
+    if (c != 'r' && c != 'n' && c != 'm') {
+        printf("La couleur doit être parmi r, n ou m\n");
+        return;
+    }
+    p->ardoise_colour = c;
 }
