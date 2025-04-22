@@ -223,7 +223,7 @@ int ask_number_of_played_cards(player p){
     while (reponse < 0 || reponse > get_size_of_hand(p)) // utilisation de scanf pour lire la réponse
 
     {
-        printf("Joueuse %d, veuillez entrer un nombre entre 1 et 2", get_player_id(p));
+        printf("Joueuse %d, veuillez entrer un nombre entre 1 et %d", get_player_id(p), get_size_of_hand(p));
         scanf("%d",&reponse); // utilisation de scanf pour lire la réponse
     }
     
