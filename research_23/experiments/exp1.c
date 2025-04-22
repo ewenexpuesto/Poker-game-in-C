@@ -9,7 +9,7 @@
 
 int main()
 {
-    /*Expérience 1*/
+    /*Expérience 1: génère 500 parties entre 3 et 20 tours avec 40 cartes et calcule le taux de victoire ainsi que le temps de calcul*/
 
     FILE *fd = fopen("resultats1.csv", "w");
 
@@ -58,7 +58,7 @@ int main()
     fclose(fd);
     return 0;
 
-/*Expérience 2*/
+/*Expérience 2 : génère 100 parties qui se jouent entre 10 et 15 tours avec un nombre de cartes de 40,80 et 160 et calcule le taux de victoire et le temps de calcul*/
 
 
     // FILE *fd1 = fopen("resultats2.csv", "w");
