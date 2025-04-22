@@ -39,7 +39,7 @@
     for(int k=0; k<get_number_of_played_cards(player1_1);k++)
     {
         card c2 = get_played_card(player1_1, k);
-        printf("%d, ",get_value(c2)) ;
+        printf("%d, ",get_value(c2));
  
     }
     if (get_slate(player1_1) != -1) { // le -1 pour éviter d'afficher au début

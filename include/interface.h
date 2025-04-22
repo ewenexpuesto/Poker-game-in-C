@@ -38,7 +38,6 @@ int ask_number_of_played_cards(player p);
 */
 card ask_card(player p);
 
-
 /* 
 \brief : affiche un message de fin de jeu avec les informations associées 
 \param b : board b défini dans board.h et board.c
