@@ -4,7 +4,6 @@
 *.log
 *.fdb_latexmk
 *.synctex.gz
-*.tex
 
 # Project html
 *.html
@@ -58,6 +57,6 @@
 *.cmd
 .tmp_versions/
 modules.order
-Module.symvers
+Module.symversf
 Mkfile.old
 dkms.conf
