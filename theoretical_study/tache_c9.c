@@ -9,6 +9,7 @@ tirage main_J2_incond(){
     int*cartes=malloc(2*sizeof(int));
     cartes=main_J2(n,m);
     tirage t2={cartes[1], cartes[2]};
+    return t2;
 }
 
 double P_approx_2_main(int i, int j, int n){
