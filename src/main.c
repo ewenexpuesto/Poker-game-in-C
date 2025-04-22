@@ -32,6 +32,9 @@ int main() {
         for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
             player p = create_player();
             add_player_to_team(b, i, p);
+
+            /* Création des cartes */
+
             for (int k = 0; k < 5; k++) {
                 card c = create_card();
                 set_value(c, (k + 1)); 
@@ -199,8 +202,9 @@ int main() {
         }
     }
 
-    for (int i = 0; i < 20; i++) {
-        free_card(card_tot[i]);
+    for(int i = 0; i < NB_CARDS; i++){
+        card c = get_card_by_id(i);
+        free_card(c);
     }
     free(card_tot);
 

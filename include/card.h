@@ -6,7 +6,7 @@
 
 /**
 \brief : type abstrait card permettant d'accéder à toutes les infos d'une carte
-d'après le sujet : paquet de 20 cartes, numérotées de 1 à 5. Il y a 4 cartes de chaque type */
+d'après le sujet : paquet de NB_CARDS cartes, numérotées de 1 à 5. Il y a 4 cartes de chaque type */
 typedef struct card_s *card;
 ;
 
