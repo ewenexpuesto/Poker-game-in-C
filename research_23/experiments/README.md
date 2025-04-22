@@ -4,6 +4,7 @@ Mon expérience 1 change le nombre de tours entre 3 et 20 tours à chaque partie
 #Les deux expériences se trouvent dans le fichier exp1.c, afin de réaliser l'expérience il faut mettre l'expérience 2 en commentaire et vice-versa pour réaliser l'expérience 2
 
 ##Compilation expérience 1 :
+Il faut tout d'abord aller dans le dossier include et vérifier que le nombre de cartes est à 40 et le mettre à 40 si cela n'est pas le cas 
 Pour compiler le programme, utilisez make puis ./exec 
 Après avoir compiler le code en C il faut :
 - installer python3
