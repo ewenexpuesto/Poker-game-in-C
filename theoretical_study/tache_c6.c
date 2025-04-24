@@ -69,7 +69,7 @@ int* main_J2(int i, int j)
     do // bouble do while qui tire 2 indexs différents, en recommençant si il a tiré 2 fois le même
     {
     index2 = rand() % 4;
-    } while (index2 == index1);
+    } while (cartes[index2] == cartes[index1] && index2 == index1);
     tab_main_J2[0] = cartes[index1];
     tab_main_J2[1] = cartes[index2];
     if(tab_main_J2[0] > tab_main_J2[1]) // cas ou les valeurs ne son pas rangées dans l'ordre croissant
