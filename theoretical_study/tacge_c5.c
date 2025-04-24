@@ -13,14 +13,14 @@ double P_cond(int i_prim, int j_prim, int i, int j)
     }
     if((i_prim == i && j_prim == j) || i_prim == j_prim )
     {
-        return (double)1/6;
+        return (double)1 /6;
     }
     if(i_prim == i || j_prim == i || i_prim == j || j_prim ==j)
     {
-        return (double)2/6;
+        return (double)2 /6;
     }
     else
     {
-        return (double)4/6;
+        return (double)4 /6;
     }
 }
