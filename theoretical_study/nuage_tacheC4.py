@@ -11,7 +11,7 @@ plt.scatter(df['n'], df['P_approx_1(i,j,n)'], color='blue', label='Points')
 dfd = pd.read_csv('droite_C4.csv')
 
 #tracé droite
-plt.plot(df['n'],dfd['y'],color='red', label=f'Droite y=P( (C^1_1,C^1_2)=(1,2))')
+plt.plot(df['n'],df['y'],color='red', label=f'Droite y=P( (C^1_1,C^1_2)=(1,2))')
 
 
 # Ajouter des titres et labels
