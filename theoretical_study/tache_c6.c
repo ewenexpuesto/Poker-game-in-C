@@ -95,6 +95,7 @@ double P_approx_2_1_main(int i_prim, int j_prim, int i, int j, int n)
         if (t_main_J2[0]==i_prim && t_main_J2[1]==j_prim)
         {
             p++;
+            printf("tirage J2: (%d, %d)\n", t_main_J2[0], t_main_J2[1]);
         }
         free(t_main_J2);
     }
