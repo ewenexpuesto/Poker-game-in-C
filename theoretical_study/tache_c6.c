@@ -99,7 +99,7 @@ double P_approx_2_1_main(int i_prim, int j_prim, int i, int j, int n)
         }
         free(t_main_J2);
     }
-    double proportion = (double)p/n ;
+    double proportion = (double)p /n ;
     return proportion;
 }
 
