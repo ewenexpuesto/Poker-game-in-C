@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-srand(time(NULL)); // initialisation du générateur de nombres aléatoires
 
 /** 
 \brief :  simule la distribution des cartes à J2 en prenant en argument la main (i,j) de J1
@@ -64,6 +63,7 @@ int* main_J2(int i, int j)
         perror("Échec malloc");
         return NULL;
     }
+    srand(time(NULL)); // initialisation du générateur de nombres aléatoires
     int index1 = rand() % 4; // on veut un index entre 1 et 4
     int index2;
     do // bouble do while qui tire 2 indexs différents, en recommençant si il a tiré 2 fois le même
