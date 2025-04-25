@@ -2,48 +2,26 @@
 #include <stdlib.h>
 #include "tache_c3.h"
 #include "tache_c6.h"
-
-/** 
-\brief : simule la distribution des cartes à J2.
-\param : nothing
-\return : le tirage du joueur 2
-*/
-
 tirage main_J2_incond(){
-    tirage t1= main_J1(); //on simule la main de J1
+    tirage t1= main_J1();
     int n=t1.first;
     int m=t1.second;
     int*cartes=malloc(2*sizeof(int));
-    cartes=main_J2(n,m); //on simule la main de J2 d'après les mains de J1
-    tirage t2={cartes[0], cartes[1]};
-    free(cartes)
-    return t2; //on retourne le tirage de J2
+    cartes=main_J2(n,m);
+    tirage t2={cartes[1], cartes[2]};
+    return t2;
 }
 
-
-/** 
-\brief :  retourne la proportion de mains (i,j) obtenues par J2 lors de n distributions indépendantes de la main de J2
-\param : (i,j) la main de J2 et n le nombre de distributions indépendantes 
-\return : la proportion de mains(i,j) obtenues par J2
-*/
-
 double P_approx_2_main(int i, int j, int n){
-    int proportion_i_j =0; //on initialise la proportion à 0
-    for(int k=0; k<n; k++){ //n distributions indépendantes
-        tirage t = main_J2_incond(); //on simule la main de J2
+    int proportion_i_j =0;
+    for(int k=0; k<n; k++){
+        tirage t = main_J2_incond();
         if ((t.first == i && t.second == j) || (t.first == j && t.second == i)) {
-            proportion_i_j++; //on incrémente la proportion
+            proportion_i_j++;
         }
     }
     return (double)proportion_i_j / n;
 }
-
-
-/** 
-\brief : retourne pour chaque main (i,j), la proportion de telles mains obtenues par J2 lors de n distributions indépendantes de la main de J2.
-\param : n le nombre de distributions indépendantes 
-\return : la proportion de mains obtenues par J2
-*/
 
 double* P_approx_2(int n){
     double * proportion = (double *) calloc(6, sizeof(double));
@@ -53,7 +31,7 @@ double* P_approx_2(int n){
     proportion[3] = P_approx_2_main(2,2,n);
     proportion[4] = P_approx_2_main(2,3,n);
     proportion[5] = P_approx_2_main(3,3,n);
-    if (proportion[0] + proportion[1] + proportion[2] + proportion[3] + proportion[4] + proportion[5] != 1) { //on vérifie que la somme est égale à 1
+    if (proportion[0] + proportion[1] + proportion[2] + proportion[3] + proportion[4] + proportion[5] != 1) {
         printf("Erreur : la somme des probabilités n'est pas égale à 1.\n");
     }
     return proportion;

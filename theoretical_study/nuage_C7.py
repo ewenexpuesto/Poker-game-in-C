@@ -1,27 +1,21 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
-#On charge les données dans df3
+#lecture du fichier
 df3 = pd.read_csv("data3.csv")
-df3.columns = df3.columns.str.strip() #On nettoie le nom des colonnes 
-# On charge les valeurs dans df4
+
+#creation du nuage de points
+plt.scatter(df3['n'], df3['proba'], color='green', label='nuage de points (n, P_approx(2,3,1,2,n)')
+
+
+#lecture du fichier
 df4 = pd.read_csv("data4.csv")
-valeur_theorique = df4.iloc[0, 0]  #On extrait la valeur de df4
+#creation de la doite
+plt.plot(df4['N'], df4['y'], color='red', label=f'y = P( (C^2_1,C^2_2) = (2,3) | (C^1_1,C^1_2)=(1,2) ))')
 
-#Nuage de points :
-plt.figure(figsize=(10, 6))
-plt.scatter(df3['N'], df3['proba'], color='pink', s=10, label='P_approx_2_1_main(2,3,1,2,n)')
-
-# Tracer la droite horizontale
-plt.axhline(y=valeur_theorique, color='red', linestyle='--', label=f"y = P((2,3)|(1,2)) ≈ {valeur_theorique:.4f}")
-
-# Ajout des titres et légende
+#ajout des titres
 plt.xlabel("N")
-plt.ylabel("Probabilité")
-plt.title("Convergence de P_approx_2_1_main(2,3,1,2,n)")
-plt.legend()
-plt.grid(True)
-
-# Affichage
-plt.tight_layout()
+plt.ylabel("P_approx(2,3,1,2,N)")
+plt.title ("Nuage de points")
 plt.show()

@@ -1,22 +1,17 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
-# On charge les données dans df1 et df2
-df1 = pd.read_csv('data1.csv')
-df2 = pd.read_csv('data2.csv')
-
-bins = [f"({i},{j})" for i in range(1,4) for j in range(i,4)]
-
-#On trace l'histogramme
-plt.figure(figsize=(10,6))
-plt.bar(bins, df1['proportion'], width=0.4, label='Empirique', alpha=0.7) #empirirque
-plt.bar(bins, df2['resultat'], width=0.4, label='Théorique', alpha=0.7) #theorique
-
-#titre de l'histogramme
-plt.title('Loi conditionnelle de (C²₁,C²₂) sachant (C¹₁,C¹₂)=(1,2)')
-plt.xlabel('Valeurs (i,j)')
-plt.ylabel('Probabilité')
-plt.legend()
-plt.grid(True, axis='y', linestyle='--', alpha=0.7)
-plt.tight_layout()
+#lecture du fichier
+df1 = pd.read_csv("data1.csv")
+#creation de l'histogramme
+plt.hist=(df1['(i,j)'], df1['freq'], color='red', label='Histogramme de la loi empirique de (C^2_1,C^2_2)') 
+#ajout des titres
+plt.xlabel("Mains (C^2_1, C^2_2)")
+plt.ylabel("Proportions")
+plt.title("Histogramme de la loi empirique de (C^2_1,C^2_2) conditionnellement à (C^1_1, C^1_2)=(1,2)")
+#lecture du fichier
+df2 = pd.read_csv("data2.csv")
+plt.hist=(df2['(i,j)'], df2['resultat'], color='blue', label = 'Histogramme de la loi théorique de (C^2_1,C^2_2)')
+plt.title("Histogramme de la loi théorique de (C^2_1,C^2_2) conditionnellement à (C^1_1, C^1_2)=(1,2)")
 plt.show()

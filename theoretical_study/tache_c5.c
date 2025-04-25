@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "tache_c5.h"
 
 /** 
 \brief :  retourne les valeurs calculées de la tache C5
