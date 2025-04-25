@@ -9,6 +9,7 @@
 \param : i et j entiers, cartes de J1
 \return : tableau avec les 2 cartes distribuées à J2
 */
+
  
 int* main_J2(int i, int j)
 {
