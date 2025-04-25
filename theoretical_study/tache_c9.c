@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include "tache_c3.h"
 #include "tache_c6.h"
+
+/** 
+\brief : simule la distribution des cartes à J2.
+\param : nothing
+\return : le tirage du joueur 2
+*/
+
 tirage main_J2_incond(){
     tirage t1= main_J1();
     int n=t1.first;
@@ -11,6 +18,13 @@ tirage main_J2_incond(){
     tirage t2={cartes[1], cartes[2]};
     return t2;
 }
+
+
+/** 
+\brief :  retourne la proportion de mains (i,j) obtenues par J2 lors de n distributions indépendantes de la main de J2
+\param : (i,j) la main de J2 et n le nombre de distributions indépendantes 
+\return : la proportion de mains(i,j) obtenues par J2
+*/
 
 double P_approx_2_main(int i, int j, int n){
     int proportion_i_j =0;
@@ -22,6 +36,13 @@ double P_approx_2_main(int i, int j, int n){
     }
     return (double)proportion_i_j / n;
 }
+
+
+/** 
+\brief : retourne pour chaque main (i,j), la proportion de telles mains obtenues par J2 lors de n distributions indépendantes de la main de J2.
+\param : n le nombre de distributions indépendantes 
+\return : la proportion de mains obtenues par J2
+*/
 
 double* P_approx_2(int n){
     double * proportion = (double *) calloc(6, sizeof(double));
