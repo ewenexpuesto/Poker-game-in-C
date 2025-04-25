@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#On charge les data
+#On charge les données dans df
 df = pd.read_csv("resultats2.csv")
 
 # On calcule les moyennes
