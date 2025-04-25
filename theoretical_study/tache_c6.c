@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "tache_c6.h"
+ 
  
 /** 
 \brief :  simule la distribution des cartes à J2 en prenant en argument la main (i,j) de J1
@@ -94,6 +96,7 @@ double P_approx_2_1_main(int i_prim, int j_prim, int i, int j, int n)
             if (t_main_J2[0]==i_prim && t_main_J2[1]==j_prim){
  
                 p++;
+                // printf("tirage J2: (%d, %d)\n", t_main_J2[0], t_main_J2[1]);
             }
             free(t_main_J2);
         }
@@ -116,7 +119,6 @@ double* P_approx_2_1(int i, int j ,int n)
         for (int m =k; m<4; m++)
         {
             double p = P_approx_2_1_main(k, m, i, j, n);
-            printf("La proportion de (%d,%d) est %f", k, m ,p);
             tab[index] = p;
             index++;
  
