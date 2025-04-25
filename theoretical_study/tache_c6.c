@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-
+ 
 /** 
 \brief :  simule la distribution des cartes à J2 en prenant en argument la main (i,j) de J1
 \param : i et j entiers, cartes de J1
 \return : tableau avec les 2 cartes distribuées à J2
 */
-
+ 
 int* main_J2(int i, int j)
 {
+ 
     int cartes[4]; // préparation d'un tableau pour stocker les cartes qu'il reste dans le jeu
     int n1 = 2; // initialisation à 2 des entiers qui représentent le nombre de chaque cartes restantes
     int n2 = 2;
@@ -63,13 +63,11 @@ int* main_J2(int i, int j)
         perror("Échec malloc");
         return NULL;
     }
-    srand(time(NULL)); // initialisation du générateur de nombres aléatoires
-    int index1 = rand() % 4; // on veut un index entre 1 et 4
+    int index1 = rand() % 4;
     int index2;
-    do // bouble do while qui tire 2 indexs différents, en recommençant si il a tiré 2 fois le même
-    {
-    index2 = rand() % 4;
-    } while (cartes[index2] == cartes[index1] && index2 == index1);
+    do {
+        index2 = rand() % 4;
+    } while (index2 == index1);  // même index = même carte exacte, donc interdit    
     tab_main_J2[0] = cartes[index1];
     tab_main_J2[1] = cartes[index2];
     if(tab_main_J2[0] > tab_main_J2[1]) // cas ou les valeurs ne son pas rangées dans l'ordre croissant
@@ -80,7 +78,7 @@ int* main_J2(int i, int j)
     }
     return tab_main_J2;
 }
-
+ 
 /** 
 \brief : retourne a proportion de mains (i',j') obtenues par J2 lors de n distributions indépendantes de la main de J2, conditionnellement à (C^1_1,C^1_2)=(i,j)
 \param : i, j cartes de J1 et i', j' les cartes potentiellements obtenues par J2, n nombre de distributions
@@ -92,17 +90,18 @@ double P_approx_2_1_main(int i_prim, int j_prim, int i, int j, int n)
     for ( int k =0; k<n; k++) // boucle pour faire n tirages
     {
         int* t_main_J2 = main_J2(i, j); // main de J2
-        if (t_main_J2[0]==i_prim && t_main_J2[1]==j_prim)
-        {
-            p++;
-            printf("tirage J2: (%d, %d)\n", t_main_J2[0], t_main_J2[1]);
+        if(t_main_J2){
+            if (t_main_J2[0]==i_prim && t_main_J2[1]==j_prim){
+ 
+                p++;
+            }
+            free(t_main_J2);
         }
-        free(t_main_J2);
     }
     double proportion = (double)p /n ;
     return proportion;
 }
-
+ 
 /** 
 \brief : retourne pour chaque main (i',j'), la proportion de telles mains obtenues par J2 lors de n distributions indépendantes de la main de J2, conditionnellement à (C^1_1,C^1_2)=(i,j).
 \param: int i 
@@ -120,7 +119,7 @@ double* P_approx_2_1(int i, int j ,int n)
             printf("La proportion de (%d,%d) est %f", k, m ,p);
             tab[index] = p;
             index++;
-
+ 
         }
     }
     return tab;
