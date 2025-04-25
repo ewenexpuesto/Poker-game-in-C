@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
+#On charge les résultats dans df
 df = pd.read_csv("resultats1.csv")
 # On calcule les moyennes
 victoires_par_n = df.groupby("n_tours")["victoires"].mean()
