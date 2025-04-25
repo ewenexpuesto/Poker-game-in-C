@@ -10,13 +10,13 @@
 */
 
 tirage main_J2_incond(){
-    tirage t1= main_J1();
+    tirage t1= main_J1(); //on simule la main de J1
     int n=t1.first;
     int m=t1.second;
     int*cartes=malloc(2*sizeof(int));
-    cartes=main_J2(n,m);
+    cartes=main_J2(n,m); //on simule la main de J2 d'après les mains de J1
     tirage t2={cartes[1], cartes[2]};
-    return t2;
+    return t2; //on retourne le tirage de J2
 }
 
 
@@ -27,11 +27,11 @@ tirage main_J2_incond(){
 */
 
 double P_approx_2_main(int i, int j, int n){
-    int proportion_i_j =0;
-    for(int k=0; k<n; k++){
-        tirage t = main_J2_incond();
+    int proportion_i_j =0; //on initialise la proportion à 0
+    for(int k=0; k<n; k++){ //n distributions indépendantes
+        tirage t = main_J2_incond(); //on simule la main de J2
         if ((t.first == i && t.second == j) || (t.first == j && t.second == i)) {
-            proportion_i_j++;
+            proportion_i_j++; //on incrémente la proportion
         }
     }
     return (double)proportion_i_j / n;
@@ -52,7 +52,7 @@ double* P_approx_2(int n){
     proportion[3] = P_approx_2_main(2,2,n);
     proportion[4] = P_approx_2_main(2,3,n);
     proportion[5] = P_approx_2_main(3,3,n);
-    if (proportion[0] + proportion[1] + proportion[2] + proportion[3] + proportion[4] + proportion[5] != 1) {
+    if (proportion[0] + proportion[1] + proportion[2] + proportion[3] + proportion[4] + proportion[5] != 1) { //on vérifie que la somme est égale à 1
         printf("Erreur : la somme des probabilités n'est pas égale à 1.\n");
     }
     return proportion;
