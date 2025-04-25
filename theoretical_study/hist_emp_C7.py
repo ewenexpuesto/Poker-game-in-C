@@ -1,8 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# On charge les données dans df1 et df2
+# On charge les données dans df1
 df1 = pd.read_csv('data1.csv')
+# On charge les données dans df2
 df2 = pd.read_csv('data2.csv')
 
 bins = [f"({i},{j})" for i in range(1,4) for j in range(i,4)]
@@ -20,3 +21,4 @@ plt.legend()
 plt.grid(True, axis='y', linestyle='--', alpha=0.7)
 plt.tight_layout()
 plt.show()
+
