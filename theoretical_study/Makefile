@@ -19,7 +19,7 @@ all: $(EXEC)
 
 #Dépendencies 
 
-tache_c3.o	: tache_c3.c
+tache_c3.o	: tache_c3.c	
 #tache_c4_nuage.o	: tache_c4_nuage.c
 #tache_c4_hist.o	: tache_c4_hist.c
 tache_c6.o : tache_c6.c
