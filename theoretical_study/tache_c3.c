@@ -125,8 +125,8 @@ double * P_approx_1(int n) {
     proportion[3] = P_approx_1_main(2,2,n);
     proportion[4] = P_approx_1_main(2,3,n);
     proportion[5] = P_approx_1_main(3,3,n);
-    if (proportion[0] + proportion[1] + proportion[2] + proportion[3] + proportion[4] + proportion[5] != 1) {
-        printf("Erreur : la somme des probabilités n'est pas égale à 1.\n");
-    }
+    // if (proportion[0] + proportion[1] + proportion[2] + proportion[3] + proportion[4] + proportion[5] != 1) {
+    //     printf("Erreur : la somme des probabilités n'est pas égale à 1.\n");
+    // } // it is never equal to 1 because of the approximation
     return proportion;
 }
