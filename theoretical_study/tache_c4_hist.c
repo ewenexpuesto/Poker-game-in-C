@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "tache_c3.h"
 
+
 void hist_loi_empirique_C4(int n)
 {
     FILE *f = fopen("P_approx_1.csv","w"); // ouverture/créée fichier en mode écriture
