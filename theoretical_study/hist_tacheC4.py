@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 # Lecture du fichier CSV
 df1 = pd.read_csv('P_approx_1.csv') 
 # Création d'un premier diagramme en barre
