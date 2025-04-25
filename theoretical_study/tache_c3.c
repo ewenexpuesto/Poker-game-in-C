@@ -2,11 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
-    int first;
-    int second;
-} tirage;
-
 /**
  * \brief computes the size of a list the is made of 1, 2 and 3
  * \param array an array of integers with a sentinel value
