@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "tache_c3.h"
 
+
 void nuage_points_C4()
 {
     FILE *f = fopen("nuage_C4.csv","w"); // ouverture/créée fichier en mode écriture
