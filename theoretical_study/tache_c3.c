@@ -45,8 +45,8 @@ tirage distrib(int* pioche) {
 }
 
 /**
- * \brief Calcule la probabilité de tirer deux cartes de même couleur.
- * \param t un couple de cartes
+ * \brief Calcule la probabilité de tirer deux cartes données en entrée.
+ * \param t un couple de cartes de type tirage
  * \return la probabilité d'obtenir ce couple de cartes
  */
 double P(tirage t) {
@@ -68,7 +68,6 @@ double P(tirage t) {
 
 /**
  * \brief Crée une pioche de cartes
- * \param
  * \return une pioche de cartes (dynamically allocated)
  */
 int * def_pioche() {
@@ -87,7 +86,6 @@ int * def_pioche() {
 
 /**
  * \brief Tire deux cartes de la pioche du jeu
- * \param
  * \return un tirage
  */
 tirage main_J1 () {
@@ -99,7 +97,7 @@ tirage main_J1 () {
 
 /**
  * \brief Calcule la probabilité d'obtenir un couple de cartes donné
- * \param i la première carte
+ * \param i la première carte (entier)
  * \param j la seconde carte qui est supérieure à la première
  * \param n le nombre de tirages
  * \return la probabilité d'obtenir ce couple de cartes
