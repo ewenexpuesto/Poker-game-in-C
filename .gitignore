@@ -60,3 +60,5 @@ modules.order
 Module.symversf
 Mkfile.old
 dkms.conf
+
+.venv
