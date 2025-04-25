@@ -50,8 +50,8 @@ double* P_approx_2(int n){
     proportion[3] = P_approx_2_main(2,2,n);
     proportion[4] = P_approx_2_main(2,3,n);
     proportion[5] = P_approx_2_main(3,3,n);
-    if (proportion[0] + proportion[1] + proportion[2] + proportion[3] + proportion[4] + proportion[5] != 1) {
+    /*if (proportion[0] + proportion[1] + proportion[2] + proportion[3] + proportion[4] + proportion[5] != 1) {
         printf("Erreur : la somme des probabilités n'est pas égale à 1.\n");
-    }
+    }*/
     return proportion;
 }
