@@ -8,7 +8,7 @@ tirage main_J2_incond(){
     int m=t1.second;
     int*cartes=malloc(2*sizeof(int));
     cartes=main_J2(n,m);
-    tirage t2={cartes[1], cartes[2]};
+    tirage t2={cartes[0], cartes[1]};
     return t2;
 }
 
