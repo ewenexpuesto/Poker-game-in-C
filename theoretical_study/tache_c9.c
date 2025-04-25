@@ -16,6 +16,7 @@ tirage main_J2_incond(){
     int*cartes=malloc(2*sizeof(int));
     cartes=main_J2(n,m); //on simule la main de J2 d'après les mains de J1
     tirage t2={cartes[0], cartes[1]};
+    free(cartes)
     return t2; //on retourne le tirage de J2
 }
 
