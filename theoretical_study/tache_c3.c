@@ -1,4 +1,6 @@
 #include "tache_c3.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct {
     int first;
