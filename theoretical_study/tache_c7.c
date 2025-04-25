@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tache_c3.h"
-#include "tache_c6.c"
-#include "tacheC5.c"
+#include "tache_c6.h"
+#include "tache_c5.c"
 
 /** 
 \brief :  rempli un csv avec les valeurs de la loi empirique de (C^2_1,C^2_2), conditionnellement à (C^1_1,C^1_2) = (1,2)
