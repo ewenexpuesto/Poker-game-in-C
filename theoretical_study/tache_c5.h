@@ -1,4 +1,5 @@
-#include <stdio.h>
+#ifndef TACHE_C5
+#define TACHE_C5
 
 /** 
 \brief :  retourne les valeurs calculées de la tache C5
@@ -6,3 +7,5 @@
 \return :  proba que J2 obtienne i', j' sachant que J1 a obtenu i,j
 */
 double P_cond(int i_prim, int j_prim, int i, int j);
+
+#endif
