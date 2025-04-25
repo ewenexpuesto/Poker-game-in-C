@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "tache_c9.h"
 #include "tache_c10.h"
+#include <time.h>
 
 void hist_loi_empirique_C9(int n)
 {
@@ -12,6 +13,8 @@ void hist_loi_empirique_C9(int n)
     }
     fprintf(f,"(C2_1.C2_2),P_approx_2(n)\n"); // Ligne pour les titres des colonnes
     double *tab = P_approx_2(n); //stock les valeurs de P_approx_1(n)
+    //printf("%f,%f,%f,%f,%f,%f", tab[0],tab[1],tab[2],tab[3],tab[4],tab[5]);
+    //printf("Somme: %f\n", tab[0]+tab[1]+tab[2]+tab[3]+tab[4]+tab[5]);
     int k =0;
     while(k<6)
     {
@@ -38,8 +41,8 @@ void hist_loi_empirique_alter_C10(int n)
     
     fprintf(f,"(C2_1.C2_2),P_approx_2_alter(n)\n"); // Ligne pour les titres des colonnes
     double *tab = P_approx_2_alter(n); //stock les valeurs de P_approx_1(n)
-    printf("test");
-    printf("%f", tab[1]);
+    //printf("%f,%f,%f,%f,%f,%f", tab[0],tab[1],tab[2],tab[3],tab[4],tab[5]);
+    //printf("Somme: %f\n", tab[0]+tab[1]+tab[2]+tab[3]+tab[4]+tab[5]);
     int k =0;
     while(k<6)
     {
@@ -57,7 +60,8 @@ void hist_loi_empirique_alter_C10(int n)
 
 
 int main(){
-    int n = 100;
+    srand(time(NULL)); // Initialisation de la graine pour la génération aléatoire
+    int n = 10000;
     hist_loi_empirique_C9(n);
     hist_loi_empirique_alter_C10(n);
     
