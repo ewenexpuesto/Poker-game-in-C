@@ -39,7 +39,7 @@ int ask_number_of_played_cards(player p);
 card ask_card(player p);
 
 /** 
-\brief : demande à la joueuse une couleur qu'elle souhaite jouer et renvoit cette couleur
+\brief : NOUVELLE FONCTION TÂCHE E, demande à la joueuse une couleur qu'elle souhaite jouer et renvoit cette couleur
 \return : char couleur que la joueuse souhaite jouer
 */
 char ask_colour();

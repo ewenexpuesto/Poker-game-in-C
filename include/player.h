@@ -127,9 +127,13 @@ int get_player_id (player p);
  * \param p player
  * \return un entier
  */
-
  int get_slate(player p);
 
+ /**
+ * \brief NOUVELLE FONCTION TÂCHE E, Renvoie le pari de la joueuse écrit sur son ardoise, codé avec un entier
+ * \param p player
+ * \return un entier
+ */
  char get_slate_colour(player p);
 
  
@@ -138,9 +142,13 @@ int get_player_id (player p);
  * \param p player, n entier
  * \return La fonction ne renvoie rien
  */
-
  void set_slate(player p, int n);
 
+ /**
+ * \brief NOUVELLE FONCTION TÂCHE E, Remplace le pari de la joueuse par le pari codé avec l'entier donné en entrée
+ * \param p player, n entier
+ * \return La fonction ne renvoie rien
+ */
  void set_slate_colour(player p, char c);
  
 #endif

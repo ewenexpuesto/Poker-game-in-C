@@ -50,7 +50,7 @@ card get_card_by_id(int id);
 int get_value(card c);
 
 /**
-\brief : renvoye la couleur de la carte
+\brief : NOUVELLE FONCTION TÂCHE E, renvoie la couleur de la carte
 \param : card c
 \return: couleur de la carte
 */
@@ -64,7 +64,7 @@ int get_card_colour(card c);
 void set_value(card c, int n);
 
 /**
-\brief : remplace la couleur de la carte par la valeur donnée en entrée
+\brief : NOUVELLE FONCTION TÂCHE E, remplace la couleur de la carte par la valeur donnée en entrée
 \param : card c et char colour
 \return : rien
 */
