@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 # Lecture du fichier CSV
 df = pd.read_csv('nuage_C4.csv') 
 
