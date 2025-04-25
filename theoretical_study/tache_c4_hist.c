@@ -9,16 +9,16 @@ void hist_loi_empirique_C4(int n)
     {
         perror("Erreur lors de l'ouverture du fichier");
     }
-    fprintf(f," C¹_1,C¹_2,P_approx_1(n)\n"); // Ligne pour les titres des colonnes
+    fprintf(f,"(C1_1.C1_2),P_approx_1(n)\n"); // Ligne pour les titres des colonnes
     double *tab = P_approx_1(n); //stock les valeurs de P_approx_1(n)
     int k =0;
-    while(tab[k]<6)
+    while(k<6)
     {
-        for (int i=0; i<4; i++)
+        for (int i=1; i<4; i++)
         {
             for(int j=i; j<4; j++)
             {
-                fprintf(f,"%d,%d,%f",i,j, tab[k] );
+                fprintf(f,"(%d.%d),%f\n",i,j, tab[k] );
                 k++;
             }
         }
@@ -33,14 +33,25 @@ void hist_loi_theorique_C4()
     {
         perror("Erreur lors de l'ouverture du fichier");
     }
-    fprintf(f," C¹_1,C¹_2,P(C¹_1,C¹_2)\n"); // Ligne pour les titres des colonnes
-    for(int j=1; j<4; j++)
+    fprintf(f,"(C1_1.C1_2),P(C1_1.C1_2)\n"); // Ligne pour les titres des colonnes
+    for(int i=1; i<4; i++)
     {
-        for (int i=1; i<=j; i++)
+        for (int j=i; j<4; j++)
         {
-            tirage t = {i,j};
-            fprintf(f, "%d,%d,%f\n", i,j,P(t));
+            tirage t ;
+            t.first = i;
+            t.second = j;
+            fprintf(f, "(%d.%d),%f\n", i,j,P(t));
         }
     }
     fclose(f);
+}
+
+
+int main()
+{
+    int n = 10000;
+    hist_loi_empirique_C4(n);
+    hist_loi_theorique_C4();
+
 }
