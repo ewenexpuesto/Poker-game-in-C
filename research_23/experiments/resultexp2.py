@@ -1,14 +1,13 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load data
+#On charge les données dans df
 df = pd.read_csv("resultats2.csv")
 
-# Compute means
+# On calcule les moyennes
 victoires_par_n = df.groupby("n_tours")["victoires"].mean()
 temps_par_n = df.groupby("n_tours")["temps_ms"].mean()
 
-# Setup figure
 plt.figure(figsize=(10, 8))
 
 # Graphique du Taux de victoire 
@@ -23,7 +22,7 @@ plt.grid(True, linestyle=':', alpha=0.7)
 plt.legend()
 plt.text(victoires_par_n.index[-1] + 0.2, 0.51, "0.5", color='red', fontsize=10)
 
-# Graphique du Temps de calcul ---
+# Graphique du Temps de calcul
 plt.subplot(2, 1, 2)
 plt.plot(temps_par_n.index, temps_par_n.values, color='darkorange', marker='s', label="Temps moyen")
 plt.title("Temps moyen de calcul (méthode D.1)", fontsize=12)
@@ -32,6 +31,5 @@ plt.ylabel("Temps (ms)")
 plt.grid(True, linestyle=':', alpha=0.7)
 plt.legend()
 
-# Tight layout for spacing
 plt.tight_layout()
 plt.show()
