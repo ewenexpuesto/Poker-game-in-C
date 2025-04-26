@@ -10,6 +10,7 @@ void hist_loi_empirique_C9(int n)
     if(f == NULL) // vérifie que le fichier s'est bien ouvert
     {
         perror("Erreur lors de l'ouverture du fichier");
+        return; // Ajout d'un return facultatif pour éviter de continuer si le fichier ne s'ouvre pas, et donc d'éviter d'allouer de la mémoire inutilement, d'où la fuite mémoire
     }
     fprintf(f,"(C2_1.C2_2),P_approx_2(n)\n"); // Ligne pour les titres des colonnes
     double *tab = P_approx_2(n); //stock les valeurs de P_approx_1(n)
@@ -27,6 +28,7 @@ void hist_loi_empirique_C9(int n)
             }
         }
     }
+    free(tab);
     fclose(f);
 }
 
@@ -37,6 +39,7 @@ void hist_loi_empirique_alter_C10(int n)
     if(f == NULL) // vérifie que le fichier s'est bien ouvert
     {
         perror("Erreur lors de l'ouverture du fichier");
+        return;
     }
     
     fprintf(f,"(C2_1.C2_2),P_approx_2_alter(n)\n"); // Ligne pour les titres des colonnes
@@ -56,6 +59,8 @@ void hist_loi_empirique_alter_C10(int n)
             }
         }
     }
+    free(tab);
+    fclose(f);
 }
 
 

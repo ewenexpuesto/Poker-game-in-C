@@ -13,9 +13,9 @@ tirage main_J2_incond(){
     tirage t1= main_J1();
     int n=t1.first;
     int m=t1.second;
-    int*cartes=malloc(2*sizeof(int));
-    cartes=main_J2(n,m);
+    int*cartes=main_J2(n,m);
     tirage t2={cartes[0], cartes[1]};
+    free(cartes);
     return t2;
 }
 
