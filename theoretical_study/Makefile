@@ -6,7 +6,7 @@ CFLAGS = -g -Wall -Wextra
 LFLAGS =
 
 # Program(s) == targets 
-EXEC=exec 
+EXEC=exec clean_o
 
 # First target 
 
@@ -26,13 +26,17 @@ tache_c6.o : tache_c6.c
 tache_c5.o : tache_c5.c
 tache_c9.o : tache_c9.c
 tache_c10.o : tache_c10.c
+tache_c11.o : tache_c11.c
 main.o: main.c
 
 # Targets 
-exec : main.o tache_c9.o tache_c10.o tache_c5.o tache_c3.o tache_c6.o
+exec : main.o tache_c9.o tache_c10.o tache_c5.o tache_c3.o tache_c6.o tache_c11.o
 	$(CC) -o $@ $^
 
 # Clean
 
 clean :
-	rm -f *.o *.csv
+	rm -f *.o *.csv C11/*.csv
+
+clean_o :
+	rm -f *.o 

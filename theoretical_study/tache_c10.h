@@ -10,7 +10,7 @@
  * \return : la proportion des mains obtenues par J2
  */
 
- double P_approx_2_1_alter(int i_prim, int j_prim, int n);
+ double P_approx_2_main_alter(int i_prim, int j_prim, int n);
 
 /**
  * \brief : Calcule la proportion de mains obtenues par J2.
