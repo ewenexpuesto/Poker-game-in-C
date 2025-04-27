@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "tache_c3.h"
 
 /* Tâche C.10 */
 
@@ -18,3 +19,11 @@
  */
 
  double* P_approx_2_alter(int n);
+
+ /**
+ * \brief Calcule la probabilité de tirer deux cartes données en entrée.
+ * \param t un couple de cartes de type tirage
+ * \return la probabilité d'obtenir ce couple de cartes
+ */
+
+double P_th_C2_1_C2_2(tirage t);

@@ -12,10 +12,9 @@ void hist_loi_empirique_C9(int n)
         perror("Erreur lors de l'ouverture du fichier");
         return; // Ajout d'un return facultatif pour éviter de continuer si le fichier ne s'ouvre pas, et donc d'éviter d'allouer de la mémoire inutilement, d'où la fuite mémoire
     }
-    fprintf(f,"(C2_1.C2_2),P_approx_2(n)\n"); // Ligne pour les titres des colonnes
+    fprintf(f,"(C2_1.C2_2),P_approx_2\n"); // Ligne pour les titres des colonnes
     double *tab = P_approx_2(n); //stock les valeurs de P_approx_1(n)
-    //printf("%f,%f,%f,%f,%f,%f", tab[0],tab[1],tab[2],tab[3],tab[4],tab[5]);
-    //printf("Somme: %f\n", tab[0]+tab[1]+tab[2]+tab[3]+tab[4]+tab[5]);
+
     int k =0;
     while(k<6)
     {
@@ -42,10 +41,9 @@ void hist_loi_empirique_alter_C10(int n)
         return;
     }
     
-    fprintf(f,"(C2_1.C2_2),P_approx_2_alter(n)\n"); // Ligne pour les titres des colonnes
+    fprintf(f,"(C2_1.C2_2),P_approx_2_alter\n"); // Ligne pour les titres des colonnes
     double *tab = P_approx_2_alter(n); //stock les valeurs de P_approx_1(n)
-    //printf("%f,%f,%f,%f,%f,%f", tab[0],tab[1],tab[2],tab[3],tab[4],tab[5]);
-    //printf("Somme: %f\n", tab[0]+tab[1]+tab[2]+tab[3]+tab[4]+tab[5]);
+
     int k =0;
     while(k<6)
     {
@@ -63,13 +61,85 @@ void hist_loi_empirique_alter_C10(int n)
     fclose(f);
 }
 
+void hist_loi_theorique_C8()
+{
+    FILE *f = fopen("loi_theorique.csv","w"); // ouverture/créée fichier en mode écriture
+    if(f == NULL) // vérifie que le fichier s'eest bien ouvert
+    {
+        perror("Erreur lors de l'ouverture du fichier");
+    }
+    fprintf(f,"(C2_1.C2_2),P(C2_1.C2_2)\n"); // Ligne pour les titres des colonnes
+    for(int i=1; i<4; i++)
+    {
+        for (int j=i; j<4; j++)
+        {
+            tirage t ;
+            t.first = i;
+            t.second = j;
+            fprintf(f, "(%d.%d),%f\n", i,j,P_th_C2_1_C2_2(t));
+        }
+    }
+    fclose(f);
+}
+
+void nuage_points_C10()
+{
+    FILE *f = fopen("nuage_C10.csv","w"); // ouverture/créée fichier en mode écriture
+    if(f == NULL) // vérifie que le fichier s'eest bien ouvert
+    {
+        perror("Erreur lors de l'ouverture du fichier");
+  
+    }
+    fprintf(f,"n,P_approx_2(2.3.n)\n"); // Ligne pour les titres des colonnes
+    for(int n=1; n<100001; n++)
+    {
+        fprintf(f, "%d,%f\n",n,P_approx_2(2,3,n));
+    }
+    fclose(f);
+   
+}
+
+void nuage_points_C10()
+{
+    FILE *f = fopen("nuage_alter_C10.csv","w"); // ouverture/créée fichier en mode écriture
+    if(f == NULL) // vérifie que le fichier s'eest bien ouvert
+    {
+        perror("Erreur lors de l'ouverture du fichier");
+  
+    }
+    fprintf(f,"n,P_approx_2_alter(2.3.n)\n"); // Ligne pour les titres des colonnes
+    for(int n=1; n<100001; n++)
+    {
+        fprintf(f, "%d,%f\n",n,P_approx_1_main(2,3,n));
+    }
+    fclose(f);
+   
+}
+
+void droite_C10()
+{
+    FILE *f = fopen("droite_C4.csv","w"); // ouverture/créée fichier en mode écriture
+    if(f == NULL) // vérifie que le fichier s'eest bien ouvert
+    {
+        perror("Erreur lors de l'ouverture du fichier");
+        
+    }
+    tirage t = {1,2};
+    fprintf(f,"y\n"); // Ligne pour les titres de la colonne
+    for(int n=1; n<100000; n++)
+    {
+        fprintf(f, "%f\n",P(t));
+    }
+    fclose(f);
+   
+}
 
 int main(){
     srand(time(NULL)); // Initialisation de la graine pour la génération aléatoire
-    int n = 10000;
+    int n = 100000;
     hist_loi_empirique_C9(n);
     hist_loi_empirique_alter_C10(n);
-    
+    hist_loi_theorique_C8();
     return 0;
 }
 
