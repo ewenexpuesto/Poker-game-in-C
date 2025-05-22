@@ -44,6 +44,14 @@ card ask_card(player p);
 */
 char ask_colour();
 
+/** 
+\brief : NOUVELLE FONCTION TÂCHE E, demande à la joueuse la mise qu'elle souhaite miser
+\param player p 
+\return : int la mise que la joueuse souhaite miser
+*/
+int ask_mise(player p);
+
+
 /* 
 \brief : affiche un message de fin de jeu avec les informations associées 
 \param b : board b défini dans board.h et board.c
