@@ -97,6 +97,8 @@ int main() {
                 player p = get_player(b, i, j);
                 int gamble = ask_gamble(p);
                 char colour = ask_colour();
+                int mise = ask_mise(p); /*Tâche E3*/
+                set_mise(p, mise);  /*Tâche E3*/
                 set_slate_colour(p, colour);
                 set_slate(p, gamble);
             }
@@ -104,7 +106,7 @@ int main() {
         
         /* Phase de jeu */
 
-        int team_scores[NB_TEAMS] = {0, 0};
+        int team_scores[NB_TEAMS] = {NB_JETONS_DEP, NB_JETONS_DEP};
 
         for (int i = 0; i < NB_TEAMS; i++) {
             for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
@@ -121,14 +123,18 @@ int main() {
                     play_card(p, c);
                     add_out_of_game_card(b,c);
                     remove_card_from_hand(p,c);
+                    int mise = get_mise(p); /*Tâche E3*/
                     if (get_card_colour(c) == get_slate_colour(p)) {
-                        team_scores[i] += get_value(c);
+                        aug_jetons(p, mise);        /*Tâche E3*/
+                        team_scores[i] += get_mise(p);
                     }
                     else if (get_slate_colour(p) == 'm') {
-                        team_scores[i] += get_value(c);
+                        aug_jetons(p,mise);     /*Tâche E3*/
+                        team_scores[i] += get_mise(p);
                     }
                     else {
-                        team_scores[i] += 0;
+                        sub_jetons(p, mise);        /*Tâche E3*/
+                        team_scores[i] -= get_mise(p);
                     }
                     //printf("%d\n", team_scores[i]);
                 }
@@ -145,25 +151,31 @@ int main() {
                     //printf("c2 : %d\n", get_value(c2));        
                     play_card(p, c1);
                     play_card(p, c2);
-
+                    int mise = get_mise(p);
                     if (get_card_colour(c1) == get_slate_colour(p)) {
-                        team_scores[i] += get_value(c1);
+                        aug_jetons(p,mise);
+                        team_scores[i] += get_mise(p);
                     }
                     else if (get_slate_colour(p) == 'm') {
-                        team_scores[i] += get_value(c1);
+                        aug_jetons(p,mise);
+                        team_scores[i] += get_mise(p);
                     }
                     else {
-                        team_scores[i] += 0;
+                        sub_jetons(p,mise);
+                        team_scores[i] -= get_mise(p);
                     }
                     //printf("%d\n", team_scores[i]);
                     if (get_card_colour(c2) == get_slate_colour(p)) {
-                        team_scores[i] += get_value(c2);
+                        aug_jetons(p,mise);
+                        team_scores[i] += get_mise(p);
                     }
                     else if (get_slate_colour(p) == 'm') {
-                        team_scores[i] += get_value(c2);
+                        aug_jetons(p,mise);
+                        team_scores[i] += get_mise(p);
                     }
                     else {
-                        team_scores[i] += 0;
+                        sub_jetons(p,mise);
+                        team_scores[i] -= get_mise(p);
                     }
                     //printf("%d\n", team_scores[i]);
 
