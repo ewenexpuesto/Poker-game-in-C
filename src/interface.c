@@ -212,7 +212,26 @@ char ask_colour() {
     }
     return reponse;
 }
+
+
+/*Tâche E3*/
+/** 
+\brief : demande à la joueuse la mise qu'elle souhaite miser et renvoit cette mise
+\param : player p
+\return : int mise que la joueuse souhaite miser
+*/
  
+int ask_mise(player p){
+    int reponse = 'a';
+    printf("Entrez la mise que vous souhaitez miser : ");
+    scanf(" %d", &reponse);
+    while(reponse<0 && reponse > get_nb_jetons(p)){
+        printf("Réponse invalide. Veuillez entrer un nombre entre 0 et le nombre de jetons");
+        scanf(" %d", &reponse);
+    }
+    return reponse;
+}
+
  
 /* 
 \brief : affiche un message de fin de jeu avec les informations associées 
