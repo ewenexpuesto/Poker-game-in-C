@@ -7,6 +7,7 @@
 #define NB_CARDS 20 // DOIT ETRE MULTIPLE DE NB_PLAYERS_TEAM*NB_TEAMS
 #define NB_TEAMS 2
 #define NB_PLAYERS_TEAM 2
+#define NB_JETONS_DEP 20 //tâche E3 nombre de jetons initiale
 
 struct team {
     int team_id;
