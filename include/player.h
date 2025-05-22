@@ -150,5 +150,41 @@ int get_player_id (player p);
  * \return La fonction ne renvoie rien
  */
  void set_slate_colour(player p, char c);
+
+
+
+/*Tâche E3 après cette ligne */ 
+
+
+ /**
+ * \brief NOUVELLE FONCTION TÂCHE E, Renvoie la mise de la joueuse
+ * \param p player
+ * \return un entier
+ */
+int get_mise(player p);
+
+/**
+ * \brief NOUVELLE FONCTION TÂCHE E Renvoie le nombre de jetons de la joueuse
+ * \param p player
+ * \return un int
+ */
+int get_nb_jetons(player p);
+
+/**
+ * \brief Soustraie n au nombre de jetons de la joueuse
+ * \param p player, int n
+ * @return La fonction ne renvoie rien
+ */
+
+void sub_jetons(player p, int n);
+
+
+/**
+ * \brief Soustraie n au nombre de jetons de la joueuse
+ * \param p player, int n
+ * @return La fonction ne renvoie rien
+ */
+
+void aug_jetons(player p, int n);
  
 #endif
