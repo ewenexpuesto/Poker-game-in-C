@@ -12,6 +12,8 @@ struct player_s
     int table;                  /*le nombre de cartes sur la table*/
     int ardoise; /*1 =la joueuse a parié victoire et 0=la joueuse a parié défaite */
     char ardoise_colour;        /*la couleur de la carte posée sur la table*/
+    int mise;       /*la mise de la joueuse Tâche E3*/
+    int nb_jetons; /*nombre de jetons de la joueuse tâche E3*/
     int id;                     /*l'identifiant de la joueuse*/
     int team_id;                /*l'identifiant de son équipe*/
 };
@@ -62,6 +64,8 @@ player create_player()
     p->table = 0;
     p->ardoise = -1; /*-1 signifie que la joueuse n'a pas encore parié*/
     p->ardoise_colour = 'a'; /*'a' pour aucune couleur*/
+     p->mise = -1; /*la joueuse n'a pas encore misé tâche E3*/
+    p->nb_jetons = NB_JETONS_DEP; /*le nombre de jetons est celui de départ Tâche E3*/
     p->id = creation_id_bis(0);
     //printf("ID de la joueuse : %d\n", p->id);
     player_tab[p->id] = p;      /*l'identifiant de la joueuse est sa place dans le tableau des joueuses*/
@@ -288,4 +292,69 @@ void set_slate_colour(player p, char c)
         return;
     }
     p->ardoise_colour = c;
+}
+
+/*tâche E3 après cette ligne*/
+
+
+
+
+/**
+ * \brief Renvoie le nombre de jetons de la joueuse
+ * \param p player
+ * \return un int
+ */
+int get_nb_jetons(player p)
+{
+    return p->nb_jetons;
+}
+
+/**
+ * \brief Renvoie la mise de la joueuse
+ * \param p player
+ * \return un int
+ */
+int get_mise(player p)
+{
+    return p->mise;
+}
+
+
+/**
+ * \brief Remplace la mise de la joueuse par la valeur donnée en entrée
+ * \param p player, mise int
+ * @return La fonction ne renvoie rien
+ */
+
+void set_mise(player p, int mise){
+    if (mise<0 || mise >p->nb_jetons){
+        printf("La mise doit être entre 0 et le nombre de jetons\n");
+        return; 
+    }
+    p->mise = mise;
+}
+
+
+/**
+ * \brief Soustraie n au nombre de jetons de la joueuse
+ * \param p player, int n
+ * @return La fonction ne renvoie rien
+ */
+
+void sub_jetons(player p, int n){
+    if (n>p->nb_jetons){
+        p->nb_jetons= 0;
+    }
+    p->nb_jetons -= n;
+}
+
+
+/**
+ * \brief Soustraie n au nombre de jetons de la joueuse
+ * \param p player, int n
+ * @return La fonction ne renvoie rien
+ */
+
+void aug_jetons(player p, int n){
+    p->nb_jetons += n;
 }
