@@ -332,6 +332,7 @@ void set_mise(player p, int mise){
         return; 
     }
     p->mise = mise;
+    return;
 }
 
 

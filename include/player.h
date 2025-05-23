@@ -163,6 +163,14 @@ int get_player_id (player p);
  */
 int get_mise(player p);
 
+ /**
+  * \brief NOUVELLE FONCTION TÂCHE E, Définis la mise de la joueuse
+  * \param p player
+  * \param n entier qui est la mise
+  * \return
+  */
+void set_mise(player p, int n);
+
 /**
  * \brief NOUVELLE FONCTION TÂCHE E Renvoie le nombre de jetons de la joueuse
  * \param p player
