@@ -222,10 +222,10 @@ char ask_colour() {
 */
  
 int ask_mise(player p){
-    int reponse = 'a';
+    int reponse = -1;
     printf("Entrez la mise que vous souhaitez miser : ");
     scanf(" %d", &reponse);
-    while(reponse<0 && reponse > get_nb_jetons(p)){
+    while(reponse<0 || reponse > get_nb_jetons(p)){
         printf("Réponse invalide. Veuillez entrer un nombre entre 0 et le nombre de jetons");
         scanf(" %d", &reponse);
     }
