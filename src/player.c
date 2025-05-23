@@ -327,7 +327,7 @@ int get_mise(player p)
  */
 
 void set_mise(player p, int mise){
-    if (mise<0 || mise >p->nb_jetons){
+    if (mise<0 && mise >p->nb_jetons){
         printf("La mise doit être entre 0 et le nombre de jetons\n");
         return; 
     }
