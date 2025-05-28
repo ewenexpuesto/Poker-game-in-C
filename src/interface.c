@@ -226,7 +226,7 @@ int ask_mise(player p){
     int result = 0;
     printf("Vous avez %d jetons.\n", get_nb_jetons(p)); //affichage du nombre de jetons disponibles
     printf("Entrez la mise que vous souhaitez miser : "); //souhait de la mise
-    scanf(" %d", &reponse);
+    result = scanf(" %d", &reponse);
     while (result != 1 || reponse < 0 || reponse > get_nb_jetons(p)) {
         if (result != 1) {
             while (getchar() != '\n'); 
