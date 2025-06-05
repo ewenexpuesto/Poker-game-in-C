@@ -66,4 +66,15 @@ void display_end_game(board b);
 */
 void display_message(char* c);
 
+
+/* -------------  AJOUTS Tâche E.4  ------------- */
+/**
+ * \brief  Affiche une carte dans la console, en adaptant le format aux cartes spéciales.
+ *         - Si la carte est spéciale →  « Sp§ <Nom de la carte> »
+ *         - Sinon (carte classique)  →  « <valeur> <couleur> »
+ * \param  c  Carte à afficher.
+ * \return rien
+ */
+void display_card(card c);
+
 #endif
