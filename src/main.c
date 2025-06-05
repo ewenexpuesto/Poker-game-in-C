@@ -27,6 +27,29 @@ int main() {
         printf("Error: memory allocation failed for card_tot\n");
     }
 
+    /* ---------- AJOUT Tâche E.4  ---------- */
+    int NB_SPECIALS = NB_PLAYERS_TEAM * NB_TEAMS;   /* 1 par joueuse */
+    effect_id all_effects[] = {
+    EFF_THUY_VO, EFF_DAVID_ROUSSEL, EFF_ABASS_SAGNA,
+    EFF_LAURENCE_BOURARD, EFF_ANNE_LAURE_LIGOZAT,
+    EFF_VINCENT_FAGNON,  EFF_VALENTIN_HONORE,
+    EFF_FETIA_BANNOUR,   EFF_CHRISTOPHE_MOUILLERON,
+    EFF_DJIBRIL_AURELIEN, EFF_LUCIENNE_PACAVE,
+    EFF_LAWANDA_GAYDU,   EFF_MATHILDE_MOUGEOT,
+    EFF_DIMITRI_WATEL,   EFF_CYRIL_BENEZET,
+    EFF_MARIE_SZA
+    };
+    /* On choisit NB_SPECIALS effets distincts au hasard*/
+    int nb_effects = sizeof(all_effects)/sizeof(all_effects[0]);
+    for (int s = 0; s < NB_SPECIALS; ++s) 
+    {
+        int r = rand() % (nb_effects - s); /* indice restant */
+        effect_id id = all_effects[r];
+        all_effects[r] = all_effects[nb_effects - 1 - s];  /* retire l’effet */
+        card_tot[count++] = create_special_card(id);
+    }
+/* ------------------------------------------------------------------ */
+
     for (int i = 0; i < NB_TEAMS; i++) {
         add_team(b);
         for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
