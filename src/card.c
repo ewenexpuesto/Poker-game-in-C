@@ -8,6 +8,8 @@ struct card_s
     int id_card;
     int value;
     char colour; // r : rouge n : noir m : multicolore
+    /* ajouté en tâche E4 */
+    effect_id eff; // NO_EFFECT pour les cartes normales
 };
 
 card card_tab[NB_CARDS];
@@ -146,4 +148,60 @@ void set_colour(card c, char colour)
     {
         printf("couleur invalide");
     }
+}
+
+
+
+/* -------------  AJOUTS Tâche E.4  ------------- */
+
+/**
+ * \brief   Crée une carte spéciale.
+ *          - Alloue la structure via create_card() (identifiant unique).
+ *          - Force la valeur à 0 et la couleur à ‘m’ (multicolore).
+ *          - Mémorise l’identifiant d’effet passé en paramètre.
+ * \param id  Identifiant (enum effect_id) correspondant au pouvoir spécial.
+ * \return  pointeur sur la carte spéciale nouvellement créée.
+ */
+card create_special_card(effect_id id)
+{
+    card c = create_card();     /* on réutilise l’alloc standard        */
+    c->value  = 0;
+    c->colour = 'm';
+    c->eff    = id;
+    return c;
+}
+
+/**
+ * \brief   Indique si une carte est spéciale.
+ * \param   c  Carte à tester.
+ * \return  1 si la carte porte un effet (eff != NO_EFFECT), 0 sinon.
+ */
+int is_special(card c)
+{ 
+    return c->eff != NO_EFFECT; 
+}
+
+/**
+ * \brief   Renvoie l’identifiant d’effet d’une carte.
+ * \param   c   Carte interrogée.
+ * \return  L’énumération effect_id stockée dans la carte
+ *          (NO_EFFECT pour une carte normale).
+ */
+effect_id get_effect_id(card c)
+{ 
+    return c->eff; 
+}
+
+/* Tableau de noms lisibles des effets ; l’index doit suivre effect_id */
+const char* effect_names[] = { "normale", "Thuy Vo", "David Roussel", "Abass Sagna", "Laurence Bourard", "Christophe Mouilleron" };
+
+/**
+ * \brief   Renvoie le nom humainement lisible d’une carte.
+ * \param   c   Carte dont on veut le nom.
+ * \return  Chaîne constante (dans effect_names) correspondant à l’effet.
+ *          Pour une carte normale, renvoie "normale".
+ */
+const char* get_card_name(card c)
+{
+    return effect_names[c->eff];
 }
