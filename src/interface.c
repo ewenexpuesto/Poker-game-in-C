@@ -87,7 +87,7 @@ void display_board(board b) {
             printf("Les valeurs des cartes qu'elle a jouées sont : ");
             for (int k = 0; k < get_number_of_played_cards(pl); k++) {
                 card c = get_played_card(pl, k);
-                printf("%d %c, ", get_value(c), get_card_colour(c));
+                display_card(c); // tache E4
             }
 
             int slate = get_slate(pl);
@@ -104,7 +104,7 @@ void display_board(board b) {
     printf("Les valeurs des cartes mises de côté sont : ");
     for (int j = 0; j < get_number_of_out_of_game_cards(b); j++) {
         card c = get_out_of_game_card(b, j);
-        printf("%d %c, ", get_value(c), get_card_colour(c));
+        display_card(c); // tache E4
     }
 }
 
@@ -279,4 +279,21 @@ void display_message(char* c)
         printf("%s\n", c);
     }
  
+}
+
+/* -------------  AJOUTS Tâche E.4  ------------- */
+/**
+ * \brief  Affiche une carte dans la console, en adaptant le format aux cartes spéciales.
+ *         - Si la carte est spéciale →  « Sp§ <Nom de la carte> »
+ *         - Sinon (carte classique)  →  « <valeur> <couleur> »
+ * \param  c  Carte à afficher.
+ * \return rien
+ */
+void display_card(card c)
+{
+    if (is_special(c)){
+        printf("Sp§ %s", get_card_name(c));
+    }else{
+        printf("%d %c", get_value(c), get_card_colour(c));
+    }
 }
