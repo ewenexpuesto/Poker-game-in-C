@@ -25,6 +25,8 @@ struct board {
     team team1;
     team team2;
     card out_of_game_cards[NB_CARDS];
+    /*  Tâche E.4  */
+    int prime_override; /* 0 = désactivé, 1 = actif pour ce tour */
 };
 
 /**
@@ -134,6 +136,66 @@ card get_out_of_game_card(board b, int card_index);
  * \return void
  */
 void remove_out_of_game_card(board b, card c);
+
+
+
+
+/* ----------------- Ajout Tâche E.4  ------------------- */
+
+/**
+ * \brief  Applique l’effet de la carte spéciale « special ». Cherche l’identifiant de l’effet, vérifie qu’il est valide, puis appelle la fonction correspondante via '\c' effect_table.
+ * \param  b        Plateau de jeu courant.
+ * \param  p        Joueuse qui a posé la carte spéciale.
+ * \param  special  Pointeur vers la carte spéciale jouée.
+ * \return rien
+ */
+void apply_special_effect(board b, player p, card special);
+
+/**
+ * \brief  Effet « Thuy Vo » : une carte jouée ce tour devient 1 rouge. Si la cible était une carte spéciale, son pouvoir est annulé.
+ * \param  b        Plateau de jeu (non utilisé ici, mais pour homogénéité).
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale elle-même (non modifiée).
+ * \return rien
+ */
+void effect_thuy_vo(board b, player p, card special);
+
+/**
+ * \brief  Effet « David Roussel » : une carte devient 2 noir. Neutralise le pouvoir de la cible si c’était une spéciale.
+ * \param  b        Plateau de jeu.
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale jouée.
+ * \return rien
+ */
+void effect_david_roussel(board b, player p, card special);
+
+/**
+ * \brief  Effet « Abass Sagna » : une carte devient 3 multicolore (‘m’), donc ignorée dans les paris rouge/noir. Neutralise son pouvoir si c’était une spéciale.
+ * \param  b        Plateau de jeu.
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale jouée.
+ * \return rien
+ */
+void effect_abass_sagna(board b, player p, card special);
+
+/**
+ * \brief  Effet « Laurence Bourard » : inverse tous les paris de valeur (Victoire ↔ Défaite). Les couleurs de pari restent inchangées.
+ * \param  b        Plateau de jeu.
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale jouée (non utilisée ici).
+ * \return rien
+ */
+void effect_laurence_bourard(board b, player p, card special);
+
+/**
+ * \brief  Effet « Christophe Mouilleron » : si la somme des cartes est un nombre premier, la joueuse gagne son pari quoi qu’il arrive.  Concrètement, on place un drapeau \c prime_override dans le plateau.
+ * \param  b        Plateau de jeu (le drapeau est stocké dedans).
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale jouée.
+ * \return rien
+ */
+void effect_christophe_mouilleron(board b, player p, card special);
+
 
 
 #endif /* BOARD_H */
