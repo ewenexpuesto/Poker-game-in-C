@@ -201,3 +201,122 @@ void remove_out_of_game_card(board b, card c) {
     }
     b->out_of_game_cards[i] = 0;
 }
+
+
+
+/* ----------------- Ajout Tâche E.4  ------------------- */
+
+/**
+ * \brief  Tableau de dispatch des effets spéciaux. À l’indice i se trouve le pointeur de fonction qui implémente l’effet dont l’identifiant est i (voir enum effect_id). Une entrée NULL signifie : effet non implémenté.
+ * \param  // rien
+ * \return rien
+ */
+static void (* const effect_table[NB_EFFECTS])(board, player, card) = 
+{
+    NULL,
+    effect_thuy_vo,
+    effect_david_roussel,
+    effect_abass_sagna,
+    effect_laurence_bourard,
+    effect_christophe_mouilleron
+};
+
+/**
+ * \brief  Applique l’effet de la carte spéciale « special ». Cherche l’identifiant de l’effet, vérifie qu’il est valide, puis appelle la fonction correspondante via '\c' effect_table.
+ * \param  b        Plateau de jeu courant.
+ * \param  p        Joueuse qui a posé la carte spéciale.
+ * \param  special  Pointeur vers la carte spéciale jouée.
+ * \return rien
+ */
+void apply_special_effect(board b, player p, card special)
+{
+    effect_id id = get_effect_id(special);
+    if (id == NO_EFFECT || id >= NB_EFFECTS) return;
+    if (effect_table[id])
+        effect_table[id](b, p, special);
+}
+
+/**
+ * \brief  Effet « Thuy Vo » : une carte jouée ce tour devient 1 rouge. Si la cible était une carte spéciale, son pouvoir est annulé.
+ * \param  b        Plateau de jeu (non utilisé ici, mais pour homogénéité).
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale elle-même (non modifiée).
+ * \return rien
+ */
+void effect_thuy_vo(board b, player p, card special)
+{
+    display_message("[Thuy Vo] choisissez une carte jouée ce tour :");
+    card target = ask_card(p);
+    set_value(target, 1);
+    set_colour(target, 'r');
+    target->eff = NO_EFFECT;
+}
+
+/**
+ * \brief  Effet « David Roussel » : une carte devient 2 noir. Neutralise le pouvoir de la cible si c’était une spéciale.
+ * \param  b        Plateau de jeu.
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale jouée.
+ * \return rien
+ */
+void effect_david_roussel(board b, player p, card special)
+{
+    display_message("[David Roussel] Sélectionnez une carte jouée ce tour.");
+    card target = ask_card(p);
+    set_value (target, 2);
+    set_colour(target, 'n');
+    if (is_special(target))
+    {
+        target->eff = NO_EFFECT;
+    }
+}
+
+/**
+ * \brief  Effet « Abass Sagna » : une carte devient 3 multicolore (‘m’), donc ignorée dans les paris rouge/noir. Neutralise son pouvoir si c’était une spéciale.
+ * \param  b        Plateau de jeu.
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale jouée.
+ * \return rien
+ */
+void effect_abass_sagna(board b, player p, card special)
+{
+    display_message("[Abass Sagna] Sélectionnez une carte jouée ce tour.");
+    card target = ask_card(p);
+    set_value (target, 3);
+    set_colour(target, 'm');
+    if (is_special(target))
+    {
+        target->eff = NO_EFFECT;
+    }   
+}
+
+/**
+ * \brief  Effet « Laurence Bourard » : inverse tous les paris de valeur (Victoire ↔ Défaite). Les couleurs de pari restent inchangées.
+ * \param  b        Plateau de jeu.
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale jouée (non utilisée ici).
+ * \return rien
+ */
+void effect_laurence_bourard(board b, player p, card special)
+{
+    display_message("[Laurence Bourard] Inversion des paris !");
+    for (int t = 0; t < NB_TEAMS; t++)
+        for (int j = 0; j < NB_PLAYERS_TEAM; j++) {
+            player pl = get_player(b, t, j);
+            int old = get_slate(pl);
+            if (old != -1) set_slate(pl, 1 - old);
+        }
+}
+
+/**
+ * \brief  Effet « Christophe Mouilleron » : si la somme des cartes est un nombre premier, la joueuse gagne son pari quoi qu’il arrive.  Concrètement, on place un drapeau \c prime_override dans le plateau.
+ * \param  b        Plateau de jeu (le drapeau est stocké dedans).
+ * \param  p        Joueuse qui déclenche l’effet.
+ * \param  special  Carte spéciale jouée.
+ * \return rien
+ */
+void effect_christophe_mouilleron(board b, player p, card special)
+{
+    display_message("[Christophe Mouilleron] Prime aux nombres premiers !");
+    b->prime_override = 1;
+}
