@@ -58,9 +58,9 @@ player create_player()
         perror("Erreur durant l'allocation");       
         exit(1);
     }
-    p->cards_in_hand = malloc((NB_CARDS/(NB_PLAYERS_TEAM*NB_TEAMS)) * sizeof(card));        
+    p->cards_in_hand = malloc(((NB_CARDS/(NB_PLAYERS_TEAM*NB_TEAMS))+1) * sizeof(card)); //tache E4 : ajout d'une place pour une carte spéciale en plus   
     p->hand = 0;
-    p->cards_on_table = malloc ((NB_CARDS/(NB_PLAYERS_TEAM*NB_TEAMS)) * sizeof(card));
+    p->cards_on_table = malloc (((NB_CARDS/(NB_PLAYERS_TEAM*NB_TEAMS))+1) * sizeof(card)); // tache E4 : idem
     p->table = 0;
     p->ardoise = -1; /*-1 signifie que la joueuse n'a pas encore parié*/
     p->ardoise_colour = 'a'; /*'a' pour aucune couleur*/
